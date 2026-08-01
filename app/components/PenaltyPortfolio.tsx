@@ -103,9 +103,9 @@ export function PenaltyPortfolio() {
         <h1>AYAN SIDDIQUI FC</h1>
         <p>Pick a corner.</p>
         <div className="brand-lockup">
-          <span className="brand-lockup__crest" aria-hidden="true">AM</span>
+          <span className="brand-lockup__crest" aria-hidden="true">AS</span>
           <div>
-            <strong>Alex Morgan FC</strong>
+            <strong>Ayan Siddiqui FC</strong>
             <span>Creative developer · #10</span>
           </div>
         </div>
