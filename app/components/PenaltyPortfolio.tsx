@@ -2,34 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { PixelSprite } from "./PixelSprite";
-
-const PLAYER = [
-  "...HHH...",
-  "..HSSSH..",
-  "..HSSSH..",
-  "...SS....",
-  "...BBB...",
-  "..BBBBB..",
-  "...BBB...",
-  "...B.B...",
-  "..BB.BB..",
-  "..WW.WW..",
-  "..KK.KK..",
-];
-
-const KEEPER = [
-  ".....HHH.....",
-  "....HSSSH....",
-  "....HSSSH....",
-  "R...GGGGG...R",
-  "RR..GGGGG..RR",
-  ".R..GGGGG..R.",
-  "....GGGGG....",
-  "....G...G....",
-  "...GG...GG...",
-  "...KK...KK...",
-];
 
 const routes = [
   { id: "tl", label: "Experience", path: "/experience", corner: "Top left" },
@@ -154,10 +126,12 @@ export function PenaltyPortfolio() {
 
       <section className="game-stage" aria-label="Interactive penalty kick navigation">
         <div className="goal">
-          <div className="goal__net" />
-          <div className="goal__crossbar" />
-          <div className="goal__post goal__post--left" />
-          <div className="goal__post goal__post--right" />
+          <img
+            className="goal__art"
+            src="/game-assets/goal-net.png"
+            alt=""
+            draggable={false}
+          />
           {routes.map((route) => (
             <button
               className={`target target--${route.id}`}
@@ -166,22 +140,35 @@ export function PenaltyPortfolio() {
               onClick={() => shoot(route.id)}
               aria-label={`Shoot ${route.corner} to open ${route.label}`}
             >
+              <img
+                className="target__art"
+                src="/game-assets/corner-target.png"
+                alt=""
+                draggable={false}
+              />
               <span className="target__label">{route.label}</span>
             </button>
           ))}
         </div>
 
-        <PixelSprite
-          pattern={KEEPER}
-          label="Pixel goalkeeper"
+        <img
+          src="/game-assets/goalkeeper.png"
+          alt="Pixel goalkeeper diving across the goal"
+          draggable={false}
           className={`goalkeeper ${
             keeperDirection ? `goalkeeper--dive-${keeperDirection}` : ""
           }`}
         />
-        <div className={`ball ${shot ? `ball--${shot} ball--shot` : ""}`} aria-label="Soccer ball" />
-        <PixelSprite
-          pattern={PLAYER}
-          label="Pixel soccer player"
+        <img
+          src="/game-assets/ball.png"
+          alt="Pixel soccer ball"
+          draggable={false}
+          className={`ball ${shot ? `ball--${shot} ball--shot` : ""}`}
+        />
+        <img
+          src="/game-assets/penalty-taker.png"
+          alt="Pixel soccer player wearing number 10"
+          draggable={false}
           className={`player ${phase !== "idle" ? "player--kick" : ""}`}
         />
 
