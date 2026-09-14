@@ -37,6 +37,10 @@ test("renders all four accessible penalty targets", async () => {
   const html = await response.text();
   assert.match(html, /AYAN SIDDIQUI FC/i);
   assert.match(html, /Pick a corner\./i);
+  assert.doesNotMatch(html, /The Portfolio Cup/i);
+  assert.match(html, /stadium-floodlight\.png/);
+  assert.match(html, /penalty-box__spot/);
+  assert.match(html, /Animated Pixel soccer player wearing number 10/);
   assert.match(html, /Shoot Top left to open Experience/);
   assert.match(html, /Shoot Top right to open Projects/);
   assert.match(html, /Shoot Bottom left to open About me/);

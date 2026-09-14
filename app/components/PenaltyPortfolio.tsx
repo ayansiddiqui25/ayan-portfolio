@@ -13,9 +13,6 @@ const routes = [
 type ShotId = (typeof routes)[number]["id"];
 type Phase = "idle" | "shooting" | "goal" | "leaving";
 
-const fanColors = ["#ff4f45", "#ffc83d", "#2d65f2", "#d6ff3f", "#f3f0db"];
-const skinColors = ["#7a492f", "#a86442", "#d69062", "#efba88", "#5a3526"];
-
 export function PenaltyPortfolio() {
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>("idle");
@@ -71,51 +68,19 @@ export function PenaltyPortfolio() {
   return (
     <main className="game-shell">
       <header className="hero-masthead">
-        <span className="hero-masthead__league">The Portfolio Cup · Final</span>
         <h1>AYAN SIDDIQUI FC</h1>
         <p>Pick a corner.</p>
-        <div className="brand-lockup">
-          <span className="brand-lockup__crest" aria-hidden="true">AS</span>
-          <div>
-            <strong>Ayan Siddiqui FC</strong>
-            <span>Creative developer · #10</span>
-          </div>
-        </div>
-        <div className="scoreboard" aria-label="Portfolio match scoreboard">
-          <div className="scoreboard__top">
-            <span>90:00</span>
-            <span>Portfolio Cup</span>
-            <span>Final</span>
-          </div>
-          <div className="scoreboard__score">YOU 0 — 0 NEXT</div>
-        </div>
       </header>
 
       <div className="stadium" aria-hidden="true">
         <div className="sky" />
         <div className="floodlight floodlight--left">
-          <span className="floodlight__panel" />
-          <span className="floodlight__tower" />
+          <img src="/game-assets/stadium-floodlight.png" alt="" draggable={false} />
         </div>
         <div className="floodlight floodlight--right">
-          <span className="floodlight__panel" />
-          <span className="floodlight__tower" />
+          <img src="/game-assets/stadium-floodlight.png" alt="" draggable={false} />
         </div>
-        <div className="stands">
-          <div className="fans">
-            {Array.from({ length: 84 }, (_, index) => (
-              <span
-                className="fan"
-                key={index}
-                style={{
-                  "--fan-shirt": fanColors[index % fanColors.length],
-                  "--fan-skin": skinColors[(index * 3) % skinColors.length],
-                  "--fan-delay": `${(index % 7) * -0.09}s`,
-                } as React.CSSProperties}
-              />
-            ))}
-          </div>
-        </div>
+        <div className="stands" />
         <div className="ad-board">
           <span>Ayan Siddiqui FC</span>
           <span>Design · Build · Ship</span>
@@ -125,6 +90,10 @@ export function PenaltyPortfolio() {
       </div>
 
       <section className="game-stage" aria-label="Interactive penalty kick navigation">
+        <div className="penalty-box" aria-hidden="true">
+          <span className="penalty-box__arc" />
+          <span className="penalty-box__spot" />
+        </div>
         <div className="goal">
           <img
             className="goal__art"
@@ -165,10 +134,9 @@ export function PenaltyPortfolio() {
           draggable={false}
           className={`ball ${shot ? `ball--${shot} ball--shot` : ""}`}
         />
-        <img
-          src="/game-assets/penalty-taker.png"
-          alt="Pixel soccer player wearing number 10"
-          draggable={false}
+        <span
+          role="img"
+          aria-label="Animated Pixel soccer player wearing number 10"
           className={`player ${phase !== "idle" ? "player--kick" : ""}`}
         />
 
