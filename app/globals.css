@@ -1073,11 +1073,6 @@ a:focus-visible {
   border-top: 7px solid #142552;
   border-bottom: 8px solid #050916;
   background: #050b21 url("/game-assets/stadium-crowd.png") center 54% / cover no-repeat;
-  animation: crowd-bounce 1.1s steps(2, end) infinite alternate;
-}
-
-@keyframes crowd-bounce {
-  to { background-position: center 56%; }
 }
 
 .stands::after {
