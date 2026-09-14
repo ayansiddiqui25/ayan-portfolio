@@ -56,9 +56,9 @@ export function PenaltyPortfolio() {
     setPhase("shooting");
     cheer();
     timers.current.push(
-      window.setTimeout(() => setPhase("goal"), 1080),
-      window.setTimeout(() => setPhase("leaving"), 1740),
-      window.setTimeout(() => router.push(route.path), 2250),
+      window.setTimeout(() => setPhase("goal"), 1300),
+      window.setTimeout(() => setPhase("leaving"), 1980),
+      window.setTimeout(() => router.push(route.path), 2480),
     );
   };
 
@@ -91,7 +91,9 @@ export function PenaltyPortfolio() {
 
       <section className="game-stage" aria-label="Interactive penalty kick navigation">
         <div className="penalty-box" aria-hidden="true">
-          <span className="penalty-box__arc" />
+          <span className="penalty-box__side penalty-box__side--left" />
+          <span className="penalty-box__side penalty-box__side--right" />
+          <span className="penalty-box__front" />
           <span className="penalty-box__spot" />
         </div>
         <div className="goal">
@@ -120,14 +122,28 @@ export function PenaltyPortfolio() {
           ))}
         </div>
 
-        <img
-          src="/game-assets/goalkeeper.png"
-          alt="Pixel goalkeeper diving across the goal"
-          draggable={false}
+        <div
+          role="img"
+          aria-label="Animated pixel goalkeeper diving across the goal"
           className={`goalkeeper ${
             keeperDirection ? `goalkeeper--dive-${keeperDirection}` : ""
           }`}
-        />
+        >
+          {[
+            ["ready", "keeper-ready.png"],
+            ["launch", "keeper-launch.png"],
+            ["airborne", "keeper-airborne.png"],
+            ["stretch", "keeper-stretch.png"],
+          ].map(([frame, file]) => (
+            <img
+              key={frame}
+              src={`/game-assets/${file}`}
+              alt=""
+              draggable={false}
+              className={`goalkeeper__frame goalkeeper__frame--${frame}`}
+            />
+          ))}
+        </div>
         <img
           src="/game-assets/ball.png"
           alt="Pixel soccer ball"
