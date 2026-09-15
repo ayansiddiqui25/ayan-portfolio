@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { ContentPage } from "../components/ContentPage";
-import { pages } from "../portfolio-data";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = { title: "Projects" };
 
 export default function ProjectsPage() {
-  return <ContentPage data={pages.projects} />;
+  redirect("/#projects");
 }

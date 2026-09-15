@@ -3,10 +3,10 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const routes = [
-  ["/about", "About me", "The player behind the pixels."],
-  ["/experience", "Experience", "Seasons of shipping."],
-  ["/projects", "Projects", "Selected match highlights."],
-  ["/hobbies", "Off the pitch", "Life beyond the laptop."],
+  ["/about", "#about"],
+  ["/experience", "#experience"],
+  ["/projects", "#projects"],
+  ["/hobbies", "#about"],
 ];
 
 async function render(path = "/") {
@@ -58,15 +58,11 @@ test("renders the scroll-driven portfolio sections and penalty scene", async () 
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
-test("renders every portfolio destination and return link", async () => {
-  for (const [path, navLabel, heading] of routes) {
+test("redirects legacy pages into the unified scrolling portfolio", async () => {
+  for (const [path, anchor] of routes) {
     const response = await render(path);
-    assert.equal(response.status, 200, path);
-    const html = await response.text();
-    assert.match(html, new RegExp(navLabel, "i"), path);
-    assert.match(html, new RegExp(heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"), path);
-    assert.match(html, /href="\/"/, path);
-    assert.match(html, /Back to the spot/, path);
+    assert.ok([307, 308].includes(response.status), `${path}: ${response.status}`);
+    assert.match(response.headers.get("location") ?? "", new RegExp(`${anchor}$`), path);
   }
 });
 
@@ -86,9 +82,12 @@ test("uses a full-field hero, keeps the crowd static, and holds the ball until c
 
   assert.doesNotMatch(styles, /crowd-bounce/);
   assert.match(styles, /\.scroll-story__sticky::before/);
+  assert.match(styles, /\.scroll-story__sticky\s*\{[\s\S]*?width: 100%/);
+  assert.match(styles, /--font-display:[^;]+;[\s\S]*?--font-body:[^;]+;[\s\S]*?--font-label:[^;]+;/);
   assert.match(styles, /\.kick-scene[\s\S]*?background: transparent/);
   assert.match(component, /clamp\(\(progress - \.5\) \/ \.3\)/);
   assert.match(component, /ballProgress >= \.98 \? "is-in-net"/);
   assert.match(styles, /transform: translate3d\(calc\(-50% \+ var\(--ball-x\)\), var\(--ball-y\)/);
+  assert.match(styles, /\.scroll-player\s*\{[\s\S]*?left: 34%;[\s\S]*?translate3d\(calc\(-50% \+ var\(--run-x\)\)/);
   assert.match(styles, /\.scroll-ball\.is-in-net\s*\{\s*z-index: 4/);
 });
