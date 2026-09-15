@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const routes = [
@@ -29,31 +30,31 @@ async function render(path = "/") {
   );
 }
 
-test("renders all four accessible penalty targets", async () => {
+test("renders the scroll-driven portfolio sections and penalty scene", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /AYAN SIDDIQUI FC/i);
-  assert.match(html, /Pick a corner\./i);
+  assert.match(html, /Ayan/);
+  assert.match(html, /Siddiqui/);
+  assert.match(html, /Computer Engineering/i);
+  assert.match(html, /Scroll-controlled pixel penalty kick/i);
   assert.doesNotMatch(html, /The Portfolio Cup/i);
   assert.match(html, /stadium-floodlight\.png/);
-  assert.match(html, /penalty-box__side--left/);
-  assert.match(html, /penalty-box__side--right/);
-  assert.match(html, /penalty-box__front/);
-  assert.match(html, /penalty-box__spot/);
+  assert.match(html, /kick-scene__spot/);
   assert.match(html, /keeper-ready\.png/);
   assert.match(html, /keeper-launch\.png/);
   assert.match(html, /keeper-airborne\.png/);
   assert.match(html, /keeper-stretch\.png/);
-  assert.match(html, /Animated Pixel soccer player wearing number 10/);
-  assert.match(html, /Shoot Top left to open Experience/);
-  assert.match(html, /Shoot Top right to open Projects/);
-  assert.match(html, /Shoot Bottom left to open About me/);
-  assert.match(html, /Shoot Bottom right to open Off the pitch/);
-  assert.match(html, /Pixel goalkeeper/i);
-  assert.match(html, /Pixel soccer player/);
+  assert.match(html, /id="experience"/);
+  assert.match(html, /id="projects"/);
+  assert.match(html, /id="skills"/);
+  assert.match(html, /id="about"/);
+  assert.match(html, /Ayan Siddiqui FC/);
+  assert.match(html, /Interactive portfolio/i);
+  assert.match(html, /Temporary pixel soccer player portrait/i);
+  assert.doesNotMatch(html, /Shoot Top left|Pick a corner/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
@@ -75,4 +76,19 @@ test("serves the custom social preview metadata", async () => {
   assert.match(html, /property="og:image"/);
   assert.match(html, /http:\/\/localhost(?::3000)?\/og\.png/);
   assert.match(html, /summary_large_image/);
+});
+
+test("uses a full-field hero, keeps the crowd static, and holds the ball until contact", async () => {
+  const [styles, component] = await Promise.all([
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/PenaltyPortfolio.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.doesNotMatch(styles, /crowd-bounce/);
+  assert.match(styles, /\.scroll-story__sticky::before/);
+  assert.match(styles, /\.kick-scene[\s\S]*?background: transparent/);
+  assert.match(component, /clamp\(\(progress - \.5\) \/ \.3\)/);
+  assert.match(component, /ballProgress >= \.98 \? "is-in-net"/);
+  assert.match(styles, /transform: translate3d\(calc\(-50% \+ var\(--ball-x\)\), var\(--ball-y\)/);
+  assert.match(styles, /\.scroll-ball\.is-in-net\s*\{\s*z-index: 4/);
 });
