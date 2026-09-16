@@ -59,10 +59,15 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   background: url("/game-assets/siddiqui-kick-sheet.png") 0 0 / 200% 200% no-repeat;
   image-rendering: pixelated;
 }
-.penalty-player--0 { background-position: 0 0; }
+.penalty-player--0 {
+  background-position: 0 0;
+  /* Adjacent pose's hand intrudes at sheet x=603..614; this pose ends before x=540. */
+  clip-path: inset(0 2.5% 0 0);
+}
 .penalty-player--1 { background-position: 100% 0; }
-.penalty-player--2 { background-position: 0 100%; }
-.penalty-player--3 { background-position: 100% 100%; }
+/* Upper-row boots extend into the first 10px of these 639px-high cells. */
+.penalty-player--2 { background-position: 0 100%; clip-path: inset(2% 0 0 0); }
+.penalty-player--3 { background-position: 100% 100%; clip-path: inset(2% 0 0 0); }
 .penalty-keeper {
   position: absolute; z-index: 2; left: var(--keeper-x); top: var(--keeper-y);
   width: var(--keeper-width); aspect-ratio: 1; transform: translateX(-50%);
