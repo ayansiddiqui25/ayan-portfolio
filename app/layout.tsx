@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
   const baseUrl = host ? `${protocol}://${host}` : "http://localhost:3000";
   const description =
-    "A scroll-driven soccer portfolio for computer engineering student and developer Ayan Siddiqui.";
+    "A football-inspired portfolio for computer engineering student and developer Ayan Siddiqui.";
 
   return {
     title: {
