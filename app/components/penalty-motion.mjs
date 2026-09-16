@@ -9,6 +9,15 @@ export const TOE = { x: .955, y: .805 };
 const clamp = (n) => Math.max(0, Math.min(1, n));
 const smooth = (n) => n * n * (3 - 2 * n);
 
+export function scrollPenaltyTime(storyTop, storyHeight, heroHeight, viewportHeight) {
+  // Tall mobile intros scroll naturally until the field fits before scrubbing.
+  const leadIn = Math.max(0, heroHeight - viewportHeight);
+  const distance = Math.max(1, storyHeight - Math.max(heroHeight, viewportHeight));
+  const progress = clamp((-storyTop - leadIn) / distance);
+  // Skip the former autoplay delay so the first scroll begins the run-up.
+  return 600 + progress * (DURATION - 600);
+}
+
 export function penaltyAt(ms) {
   const run = smooth(clamp((ms - 600) / (CONTACT - 600)));
   const flight = clamp((ms - CONTACT) / 720);

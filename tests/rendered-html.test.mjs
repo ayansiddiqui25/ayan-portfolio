@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { CONTACT, DURATION, penaltyAt } from "../app/components/penalty-motion.mjs";
+import { CONTACT, DURATION, penaltyAt, scrollPenaltyTime } from "../app/components/penalty-motion.mjs";
 import test from "node:test";
 
 const routes = [
@@ -43,6 +43,8 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.doesNotMatch(html, /The Portfolio Cup/i);
   assert.match(html, /stadium-field-v2\.png/);
   assert.match(html, /Scroll down to projects/);
+  assert.match(html, /Scroll-controlled penalty kick/);
+  assert.doesNotMatch(html, /Replay kick|Play kick|penalty-control/);
   assert.match(html, /keeper-ready\.png/);
   assert.match(html, /keeper-launch\.png/);
   assert.match(html, /keeper-airborne\.png/);
@@ -73,6 +75,20 @@ test("serves the custom social preview metadata", async () => {
   assert.match(html, /property="og:image"/);
   assert.match(html, /http:\/\/localhost(?::3000)?\/og\.png/);
   assert.match(html, /summary_large_image/);
+});
+
+test("scroll controls reversible progress and waits for a tall mobile intro", () => {
+  assert.equal(scrollPenaltyTime(100, 2240, 800, 800), 600);
+  assert.equal(scrollPenaltyTime(0, 2240, 800, 800), 600);
+  assert.equal(scrollPenaltyTime(-720, 2240, 800, 800), 2000);
+  assert.equal(scrollPenaltyTime(-1440, 2240, 800, 800), DURATION);
+  assert.equal(scrollPenaltyTime(-3000, 2240, 800, 800), DURATION);
+  // Reverse to the same halfway position, with no elapsed-time dependency.
+  assert.equal(scrollPenaltyTime(-720, 2240, 800, 800), 2000);
+  assert.equal(scrollPenaltyTime(-200, 2460, 1200, 700), 600);
+  assert.equal(scrollPenaltyTime(-500, 2460, 1200, 700), 600);
+  assert.equal(scrollPenaltyTime(-1130, 2460, 1200, 700), 2000);
+  assert.equal(scrollPenaltyTime(-1760, 2460, 1200, 700), DURATION);
 });
 
 test("ball stays on the measured spot until the boot reaches it", () => {

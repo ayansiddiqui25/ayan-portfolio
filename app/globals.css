@@ -27,8 +27,9 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .site-nav__brand { font-family: var(--font-label); font-size: 14px; letter-spacing: -.5px; }
 .site-nav__links { display: flex; gap: 32px; font-size: 13px; }
 .site-nav__links a:hover { color: var(--accent); }
+.penalty-story { position: relative; height: calc(var(--hero-height, 100svh) + 180svh); background: #132c1b; }
 .field-hero {
-  position: relative; min-height: max(700px, 100svh);
+  position: sticky; top: var(--pin-top, 0px); min-height: max(700px, 100svh);
   display: flex; align-items: center; isolation: isolate;
   background: #132c1b;
 }
@@ -76,11 +77,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .penalty-shadow { position: absolute; z-index: 1; height: .7%; border-radius: 50%; background: #000; filter: blur(2px); pointer-events: none; }
 .penalty-shadow--keeper { left: var(--keeper-x); top: 42.5%; width: 7%; transform: translateX(-50%); }
 .penalty-shadow--player { left: calc(var(--player-x) + 5.2%); top: calc(var(--player-y) + 24%); width: 5%; opacity: .22; }
-.penalty-control {
-  position: absolute; z-index: 6; right: 5vw; bottom: 30px;
-  border: 0; border-bottom: 1px solid #f2eedf66; padding: 12px 0;
-  background: transparent; color: var(--paper); font-size: 12px; cursor: pointer;
-}
 .portfolio-section, .site-footer { width: min(1200px, 90%); margin: auto; }
 .portfolio-section { padding: 110px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 30px; }
 .section-index { margin: 0 0 20px; }
@@ -120,7 +116,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   .penalty-world { width: 200%; min-width: 0; left: -93%; right: auto; }
   .penalty-world::after { background: linear-gradient(180deg, #132c1b 0%, transparent 16%); }
   .down-arrow { bottom: 20px; }
-  .penalty-control { bottom: 20px; }
   .project-row__details { gap: 30px; padding-left: 0; padding-right: 0; }
   .about-section { gap: 40px; }
 }
@@ -141,5 +136,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .penalty-story { height: auto; }
+  .field-hero { position: relative; top: auto; }
   .penalty-keeper img { transition: none; }
 }

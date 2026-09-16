@@ -1,58 +1,61 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { DURATION, penaltyAt } from "./penalty-motion.mjs";
+import { DURATION, penaltyAt, scrollPenaltyTime } from "./penalty-motion.mjs";
 
 const keeperFrames = ["keeper-ready.png", "keeper-launch.png", "keeper-airborne.png", "keeper-stretch.png", "keeper-landed.png"];
 
 export function PenaltyScene() {
   const root = useRef<HTMLDivElement>(null);
   const [time, setTime] = useState(0);
-  const [replay, setReplay] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const pausedRef = useRef(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => { setReducedMotion(media.matches); };
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => { pausedRef.current = paused; }, [paused]);
 
   useEffect(() => {
     let cancelled = false;
     let frame = 0;
-    let last = 0;
-    let elapsed = 0;
-    let visible = true;
-    setTime(0);
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: .15 });
-    if (root.current) observer.observe(root.current);
-    const animate = (now: number) => {
+    let ready = false;
+    const story = root.current?.closest<HTMLElement>(".penalty-story");
+    const hero = root.current?.closest<HTMLElement>(".field-hero");
+    if (!story || !hero) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const measure = () => {
+      frame = 0;
       if (cancelled) return;
-      const delta = last ? Math.min(50, now - last) : 0;
-      last = now;
-      if (visible && !document.hidden && !pausedRef.current) {
-        elapsed = Math.min(DURATION, elapsed + delta);
-        setTime(elapsed);
-      }
-      if (elapsed < DURATION) frame = requestAnimationFrame(animate);
+      const height = hero.offsetHeight;
+      const viewport = window.innerHeight;
+      story.style.setProperty("--hero-height", `${height}px`);
+      story.style.setProperty("--pin-top", `${Math.min(0, viewport - height)}px`);
+      if (!ready) return;
+      const rect = story.getBoundingClientRect();
+      setTime(media.matches ? DURATION : scrollPenaltyTime(rect.top, rect.height, height, viewport));
     };
-    // Decode all poses before the clock starts to prevent missing-frame flashes.
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(measure); };
+    // Scroll is the only clock. Stopping holds the pose; scrolling up reverses it.
+    const observer = new ResizeObserver(schedule);
+    observer.observe(hero);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("pageshow", schedule);
+    media.addEventListener("change", schedule);
+    schedule();
+    // Decode every pose before applying the current scroll position.
     const assets = ["stadium-field-v2.png", "siddiqui-kick-sheet.png", "ball.png", ...keeperFrames];
     Promise.all(assets.map((file) => {
       const img = new Image();
       img.src = `/game-assets/${file}`;
       return img.decode().catch(() => undefined);
     })).then(() => {
-      if (!cancelled && (!window.matchMedia("(prefers-reduced-motion: reduce)").matches || replay > 0)) frame = requestAnimationFrame(animate);
+      if (!cancelled) { ready = true; schedule(); }
     });
-    return () => { cancelled = true; cancelAnimationFrame(frame); observer.disconnect(); };
-  }, [replay, reducedMotion]);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("pageshow", schedule);
+      media.removeEventListener("change", schedule);
+    };
+  }, []);
 
   const motion = penaltyAt(time);
   const vars = {
@@ -75,12 +78,6 @@ export function PenaltyScene() {
         <span className={`penalty-player penalty-player--${motion.player.frame}`} aria-hidden="true" />
         <img className="penalty-ball" src="/game-assets/ball.png" alt="" aria-hidden="true" />
       </div>
-      <button className="penalty-control" onClick={() => {
-        if (motion.finished || (reducedMotion && time === 0)) { setPaused(false); setReplay((n) => n + 1); }
-        else setPaused((value) => !value);
-      }}>
-        {motion.finished ? "Replay kick ↺" : reducedMotion && time === 0 ? "Play kick ▷" : paused ? "Play ▷" : "Pause Ⅱ"}
-      </button>
     </div>
   );
 }

@@ -15,7 +15,8 @@ export function PenaltyPortfolio() {
           <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#about">About</a>
         </div>
       </nav>
-      <section className="field-hero" id="overview">
+      <section className="penalty-story" id="overview" aria-label="Scroll-controlled penalty kick">
+        <div className="field-hero">
         <PenaltyScene />
         <div className="hero-copy">
           <p className="hero-copy__program">Computer Engineering</p>
@@ -24,6 +25,7 @@ export function PenaltyPortfolio() {
           <a className="hero-work-link" href="#projects">See my work <span aria-hidden="true">↗</span></a>
         </div>
         <a className="down-arrow" href="#projects" aria-label="Scroll down to projects">↓</a>
+        </div>
       </section>
 
       <section className="portfolio-section projects-section" id="projects">
@@ -37,7 +39,7 @@ export function PenaltyPortfolio() {
               <span className="project-row__toggle" aria-hidden="true">+</span>
             </summary>
             <div className="project-row__details">
-              <p>A football-inspired portfolio. Custom pixel artwork and a timed penalty animation, built with React and TypeScript.</p>
+              <p>A football-inspired portfolio. Custom pixel artwork and a scroll-controlled penalty animation, built with React and TypeScript.</p>
               <dl><div><dt>Role</dt><dd>Design &amp; development</dd></div><div><dt>Stack</dt><dd>React, TypeScript, CSS</dd></div></dl>
             </div>
           </details>
