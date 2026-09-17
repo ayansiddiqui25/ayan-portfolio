@@ -1,0 +1,79 @@
+/* Source of truth: docs/design-system.md. Extend these tokens, not one-off styles. */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/fonts/PressStart2P-Regular.ttf") format("truetype");
+  font-style: normal; font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-style: normal; font-weight: 400; font-display: swap;
+}
+
+:root {
+  --night: #0b1912;
+  --surface: #15271d;
+  --surface-raised: #1e3427;
+  --paper: #f2eedf;
+  --muted: #b3b9ab;
+  --line: #f2eedf26;
+  --accent: #d5f568;
+  --accent-hover: #e5ff91;
+  --accent-edge: #718c30;
+  --arcade-blue: #72bbff;
+  --arcade-gold: #f5cf70;
+  --focus: #72bbff;
+  --font-arcade: "Press Start 2P", monospace;
+  --font-display: var(--font-arcade);
+  --font-body: "Space Mono", monospace;
+  --font-label: var(--font-body);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --layout-max: 1280px;
+  --layout-width: 88%;
+  --section-space: clamp(80px, 9vw, 144px);
+  --radius-card: 16px;
+  --radius-media: 8px;
+  --radius-control: 2px;
+  --radius-pill: 999px;
+  --motion-fast: 140ms;
+}
+
+/* Raised arcade keys for primary actions; outlined keys for secondary actions. */
+.action {
+  --action-bg: var(--surface);
+  --action-ink: var(--arcade-blue);
+  --action-border: var(--arcade-blue);
+  --action-edge: #29465d;
+  display: inline-flex; align-items: center; justify-content: space-between;
+  gap: var(--space-6); min-height: 52px; max-width: 100%;
+  padding: var(--space-4) var(--space-6);
+  border: 2px solid var(--action-border); border-radius: var(--radius-control);
+  background: var(--action-bg); color: var(--action-ink);
+  box-shadow: 0 5px 0 var(--action-edge);
+  font: 400 10px/1.7 var(--font-arcade); text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast), background var(--motion-fast);
+}
+.action--primary { --action-bg: var(--accent); --action-ink: var(--night); --action-border: var(--accent); --action-edge: var(--accent-edge); }
+.action--compact { min-height: 44px; padding: var(--space-3) var(--space-4); font-size: 8px; gap: var(--space-4); }
+.action__icon { font: 400 21px/1 var(--font-body); flex-shrink: 0; }
+@media (hover: hover) {
+  .action:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--action-edge); background: var(--surface-raised); }
+  .action--primary:hover { background: var(--accent-hover); }
+}
+.action:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--action-edge); }
+.action:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+.action:disabled, .action[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; }
+@media (prefers-reduced-motion: reduce) {
+  .action { transition: none; }
+  .action:hover, .action:active { transform: none; }
+}

@@ -1,4 +1,5 @@
 import { PenaltyScene } from "./PenaltyScene";
+import { ActionLink } from "./ActionLink";
 
 const skillGroups = [
   { label: "01 / Languages", skills: ["TypeScript", "Python"] },
@@ -23,7 +24,7 @@ export function PenaltyPortfolio() {
         <div className="site-nav__links">
           <a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
         </div>
-        <a className="nav-work" href="#projects">View work <span aria-hidden="true">↗</span></a>
+        <ActionLink className="nav-work" href="#projects" compact>View work</ActionLink>
       </nav>
       <section className="penalty-story" id="overview" aria-label="Scroll-controlled penalty kick">
         <div className="field-hero">
@@ -32,7 +33,7 @@ export function PenaltyPortfolio() {
             <p className="hero-copy__program">01 / Computer Engineering</p>
             <h1>Ayan<br /><em>Siddiqui.</em></h1>
             <p className="hero-copy__intro">Code, football, and the details in between.</p>
-            <a className="hero-work-link" href="#projects">See my work <span aria-hidden="true">↗</span></a>
+            <div className="hero-actions"><ActionLink href="#projects">See my work</ActionLink><ActionLink href="#about" variant="secondary">About me</ActionLink></div>
           </div>
           <a className="down-arrow" href="#projects" aria-label="Scroll down to projects">↓</a>
         </div>
@@ -97,7 +98,7 @@ export function PenaltyPortfolio() {
         <header className="section-heading"><p className="section-index">03 / Selected work</p><h2>Ideas, made<br /><em>tangible.</em></h2></header>
         <article className="project-feature" id="project-fc">
           <a className="project-cover" href="#overview" aria-label="Return to the interactive football portfolio"><img src="/game-assets/stadium-field-v2.png" alt="The custom pixel-art football field" loading="lazy" width="1774" height="887" /><span aria-hidden="true">↗</span></a>
-          <div className="project-description"><p className="eyebrow">01 / Interactive portfolio</p><h3>Ayan Siddiqui FC</h3><p>A football-inspired portfolio. Custom pixel artwork and a scroll-controlled penalty animation, built with React and TypeScript.</p><ul className="tags"><li>React</li><li>TypeScript</li><li>Scroll animation</li></ul><a className="text-link" href="#overview">Back to the pitch <span aria-hidden="true">↗</span></a></div>
+          <div className="project-description"><p className="eyebrow">01 / Interactive portfolio</p><h3>Ayan Siddiqui FC</h3><p>A football-inspired portfolio. Custom pixel artwork and a scroll-controlled penalty animation, built with React and TypeScript.</p><ul className="tags"><li>React</li><li>TypeScript</li><li>Scroll animation</li></ul><ActionLink href="#overview" variant="secondary">Back to the pitch</ActionLink></div>
         </article>
         <div className="upcoming-projects">
           <article className="project-placeholder"><ImagePlaceholder label="Project image / 02" /><div><p className="eyebrow">02 / Coming soon</p><h3>The next build.</h3><p>Project details and imagery to follow.</p></div></article>

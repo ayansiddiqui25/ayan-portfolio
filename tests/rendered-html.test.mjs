@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { CONTACT, DURATION, penaltyAt, scrollPenaltyTime } from "../app/components/penalty-motion.mjs";
 import test from "node:test";
 
@@ -65,6 +66,20 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.doesNotMatch(html, /Pranoy|Mukherjee|Glassbox|Tradexim|Finavator/i);
   assert.doesNotMatch(html, /Shoot Top left|Pick a corner/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+});
+
+test("uses the shared retro design system and distinct CTA variants", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /class="action action--primary/);
+  assert.match(html, /class="action action--secondary/);
+  const tokens = readFileSync(new URL("../app/design-system.css", import.meta.url), "utf8");
+  const styles = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(styles, /@import "\.\/design-system.css"/);
+  assert.match(tokens, /--font-body: "Space Mono"/);
+  assert.match(tokens, /--accent: #d5f568/);
+  assert.match(tokens, /\.action:focus-visible/);
+  assert.match(tokens, /prefers-reduced-motion/);
+  assert.doesNotMatch(styles + tokens, /Arial|Helvetica|DM Serif|arcade-coral|#ff947d/i);
 });
 
 test("redirects legacy pages into the unified scrolling portfolio", async () => {
