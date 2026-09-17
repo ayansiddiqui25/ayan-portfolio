@@ -228,6 +228,31 @@ a.overview-card:hover { border-color: #f2eedf66; }
   .site-footer { flex-wrap: wrap; font-size: 9px; }
   .site-footer > span { display: none; }
 }
+.hero-description { color: var(--muted); font-size: 14px; line-height: 1.75; margin: -12px 0 var(--space-8); max-width: 42ch; }
+.availability { color: var(--arcade-gold); font: 11px/1.8 var(--font-label); margin-top: var(--space-8); max-width: 42ch; }
+.hero-copy__intro { max-width: 38ch; }
+.hero-copy__program { line-height: 1.8; }
+.overview-card--featured > .image-placeholder { flex: 1; min-height: 300px; margin-top: var(--space-6); }
+.placeholder-caption { text-align: center; max-width: calc(100% - 64px); line-height: 1.8; }
+.project-feature > .image-placeholder { aspect-ratio: 1; }
+.detail-list { padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.85; }
+.detail-list li { margin-bottom: var(--space-3); }
+.detail-list li::marker { color: var(--arcade-blue); }
+.timeline-body > p.entry-location { font-size: 11px; color: var(--arcade-gold); }
+.project-card { min-width: 0; scroll-margin-top: 110px; }
+.project-placeholder p.project-result { color: var(--arcade-gold); font-size: 12px; border-left: 2px solid var(--arcade-gold); padding-left: var(--space-3); }
+.project-details { border-block: 1px solid var(--line); margin-top: var(--space-6); }
+.project-details summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; cursor: pointer; color: var(--arcade-blue); font-size: 12px; list-style: none; }
+.project-details summary::-webkit-details-marker { display: none; }
+.project-details[open] summary span { transform: rotate(45deg); }
+.education { margin-top: var(--space-8); border-top: 1px solid var(--line); }
+.education > div { padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+.education dt { color: var(--arcade-gold); font: 11px/1.8 var(--font-label); text-transform: uppercase; margin-bottom: var(--space-2); }
+.education dd { margin: 0; font-size: 14px; line-height: 1.8; }
+.contact-section > p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-6); margin-block: var(--space-8); }
+.contact-email { display: inline-block; color: var(--arcade-blue); font-size: 13px; overflow-wrap: anywhere; padding-block: var(--space-4); }
+.contact-email:hover { text-decoration: underline; text-underline-offset: 5px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .penalty-story { height: auto; }

@@ -85,7 +85,10 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Preserve overview grid 1.65:1:1 on desktop, two columns on tablet, one on mobile.
 - Section headings: small label left (30%), title right. Stack on mobile.
 - Experience: sticky note left, dated timeline right. Unpin and stack on mobile.
-- Projects: image-led feature plus two supporting cards. Skills: 2×2 panels.
+- Projects: Qasam image-led feature plus a two-column supporting project grid.
+  Use expandable engineering notes for detail. Skills: two-column category panels.
+  Supplied personal content lives in `app/portfolio-content.ts`; only images and
+  the résumé file are pending. Preserve approximate qualifiers on metrics.
 - Breakpoints: 1000px tablet/stacked hero, 650px single-column content/mobile nav.
 - Reuse pitch-line dividers, shirt numbers, and frame details sparingly.
 
