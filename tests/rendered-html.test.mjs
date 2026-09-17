@@ -56,7 +56,13 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.match(html, /id="about"/);
   assert.match(html, /Ayan Siddiqui FC/);
   assert.match(html, /Interactive portfolio/i);
-  assert.doesNotMatch(html, /Scroll to start|Company · Dates|awaiting your photo|Featured project/i);
+  assert.doesNotMatch(html, /Scroll to start|Company · Dates|awaiting your photo/i);
+  assert.match(html, /Featured project/);
+  assert.match(html, /id="contact"/);
+  assert.match(html, /Portrait \/ Photo to come/);
+  assert.match(html, /Project image \/ 02/);
+  assert.match(html, /Experience details coming soon/);
+  assert.doesNotMatch(html, /Pranoy|Mukherjee|Glassbox|Tradexim|Finavator/i);
   assert.doesNotMatch(html, /Shoot Top left|Pick a corner/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
