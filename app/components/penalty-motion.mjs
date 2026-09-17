@@ -23,6 +23,9 @@ export function penaltyAt(ms) {
   const flight = clamp((ms - CONTACT) / 720);
   const dive = clamp((ms - CONTACT - 90) / 860);
   const settle = clamp((ms - CONTACT - 720) / 520);
+  const impact = clamp((ms - CONTACT - 720) / 600);
+  const goalIn = smooth(clamp((ms - CONTACT - 800) / 170));
+  const goalOut = smooth(clamp((ms - 3080) / 250));
   const contactX = SPOT.x - BALL_RADIUS - TOE.x * PLAYER_WIDTH;
   const contactY = SPOT.y - BALL_RADIUS * 2 - TOE.y * PLAYER_HEIGHT;
   return {
@@ -44,6 +47,11 @@ export function penaltyAt(ms) {
       width: 8,
       frame: dive === 0 ? 0 : dive < .18 ? 1 : dive < .44 ? 2 : dive < .85 ? 3 : 4,
       shadowOpacity: .27 - .17 * Math.sin(Math.PI * dive),
+    },
+    finish: {
+      net: Math.sin(impact * Math.PI * 3) * Math.pow(1 - impact, 2),
+      goalOpacity: goalIn * (1 - goalOut),
+      goalLift: (1 - goalIn) * 6,
     },
     finished: ms >= DURATION,
   };

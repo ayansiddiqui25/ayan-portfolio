@@ -29,7 +29,7 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section projects-section" id="projects">
-        <header className="section-heading"><p className="section-index">Selected work</p><h2>Projects.</h2></header>
+        <header className="section-heading"><p className="section-index">Selected work</p><h2>Projects.</h2><span className="section-shirt-number" aria-hidden="true">01</span></header>
         <div className="project-list">
           <details className="project-row" open>
             <summary>
@@ -47,14 +47,14 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section skills-section" id="skills">
-        <header className="section-heading"><p className="section-index">Toolkit</p><h2>What I work with.</h2></header>
+        <header className="section-heading"><p className="section-index">Toolkit</p><h2>What I work with.</h2><span className="section-shirt-number" aria-hidden="true">02</span></header>
         <div className="skills-grid">{skillGroups.map((group) => (
           <article className="skill-card" key={group.label}><h3>{group.label}</h3><ul>{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul></article>
         ))}</div>
       </section>
 
       <section className="portfolio-section about-section" id="about">
-        <header className="section-heading"><p className="section-index">Away from the pitch</p><h2>About me.</h2></header>
+        <header className="section-heading"><p className="section-index">Away from the pitch</p><h2>About me.</h2><span className="section-shirt-number" aria-hidden="true">03</span></header>
         <div className="about-copy">
           <p>I&apos;m Ayan, a computer engineering student interested in software and how things work. This site brings two of my interests together: building for the web and football.</p>
           <div className="experience-note" id="experience"><h3>Experience</h3><p>More on my experience soon.</p></div>

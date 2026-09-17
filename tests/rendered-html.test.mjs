@@ -127,3 +127,16 @@ test("motion has no position jumps across contact, dive or landing", () => {
     }
   }
 });
+
+test("net and goal finish follow ball impact and settle before projects", () => {
+  for (const time of [0, CONTACT, CONTACT + 500, CONTACT + 720]) {
+    assert.equal(penaltyAt(time).finish.net, 0);
+    assert.equal(penaltyAt(time).finish.goalOpacity, 0);
+  }
+  const reaction = penaltyAt(CONTACT + 820).finish;
+  assert.ok(reaction.net > 0);
+  assert.ok(penaltyAt(2700).finish.goalOpacity > .99);
+  assert.equal(penaltyAt(DURATION).finish.net, 0);
+  assert.equal(penaltyAt(DURATION).finish.goalOpacity, 0);
+  assert.deepEqual(penaltyAt(CONTACT + 820).finish, reaction);
+});

@@ -64,12 +64,17 @@ export function PenaltyScene() {
     "--keeper-width": `${motion.keeper.width}%`,
     "--ball-x": `${motion.ball.x}%`, "--ball-y": `${motion.ball.y}%`,
     "--ball-scale": motion.ball.scale, "--ball-spin": `${motion.ball.rotation}deg`,
+    "--net-shift": `${motion.finish.net * .16}cqw`,
+    "--goal-opacity": motion.finish.goalOpacity,
+    "--goal-lift": `${motion.finish.goalLift}px`,
   } as CSSProperties;
 
   return (
     <div className="penalty-stage" ref={root}>
       <div className="penalty-world" style={vars} role="img" aria-label="Siddiqui takes a penalty into the right side of the goal while the goalkeeper dives left and lands on the grass.">
         <img className="penalty-field" src="/game-assets/stadium-field-v2.png" alt="" fetchPriority="high" />
+        <span className="penalty-net-impact" aria-hidden="true" />
+        <span className="penalty-goal-caption" aria-hidden="true">GOAL<span>10 / Siddiqui</span></span>
         <span className="penalty-shadow penalty-shadow--keeper" style={{ opacity: motion.keeper.shadowOpacity }} />
         <div className="penalty-keeper" aria-hidden="true">
           {keeperFrames.map((file, index) => <img key={file} src={`/game-assets/${file}`} alt="" className={motion.keeper.frame === index ? "is-active" : ""} />)}
