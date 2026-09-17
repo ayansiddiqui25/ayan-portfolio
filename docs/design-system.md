@@ -20,21 +20,22 @@ in every heading. Content should feel personal, direct, and honest.
 
 ## Typography
 
-Use only the two bundled, locally served, open-license fonts. No runtime font CDN.
+Use the three bundled, locally served, open-license fonts. No runtime font CDN.
 
 | Role | Font | Treatment |
 | --- | --- | --- |
-| Name, section titles, card titles, GOAL | Press Start 2P | Normal 400, no synthetic italics/bold; line height 1.45–1.65 |
-| Main name | Press Start 2P | 32–68px desktop; 28–64px mobile/tablet, fit surname on its own line |
-| Section titles | Press Start 2P | 24–46px desktop; 21–30px mobile |
-| Card titles | Press Start 2P | 14–24px; short phrases, generous leading |
+| GOAL | Press Start 2P | Normal 400; preserve pixel arcade finish |
+| Main name | Oxanium | 700, 60–112px desktop; 56–96px mobile/tablet |
+| Section titles | Oxanium | 700, 42–72px desktop; 38–56px mobile; actual section names |
+| Card titles | Oxanium | 600, 24–34px; 1.25–1.3 leading |
 | Body and navigation | Space Mono | Body 15–17px, line height 1.7–1.85; navigation 12–13px |
 | Labels, dates, tags | Space Mono | 11–12px; uppercase labels with subtle tracking |
-| CTA label | Press Start 2P | 10px, 1.7 leading; compact navigation CTA 8px |
+| CTA label | Oxanium | 700, 16px; compact navigation CTA 14px |
 
 Keep paragraphs to approximately 55–65 characters per line. Pixel lettering is
 for hierarchy, not long paragraphs. Do not use Arial or serif display fonts.
-Use gold/blue emphasis rather than simulated italic pixel text.
+Use gold/blue emphasis rather than simulated italics. Place Mechatronics Engineering
+Student directly below the name in gold Oxanium 21–30px, with TMU beneath it.
 
 ## Color roles
 
@@ -58,7 +59,7 @@ Never rely on color alone to communicate state. Target WCAG AA text contrast.
 
 ## Buttons and links
 
-- Primary: lime fill, dark pixel label, square 2px corners, 5px solid lower edge.
+- Primary: lime fill, dark Oxanium label, square 2px corners, 5px solid lower edge.
   Use for the most important action in a section. One primary per action group.
 - Secondary: dark surface, blue border and label, same arcade-key geometry.
   Use for a real alternative such as About me, source code, or a live demo.
@@ -83,7 +84,9 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Card radius 16px, media radius 8px, action radius 2px. Pills reserved for
   navigation shell, badges, and tags, never primary CTAs.
 - Preserve overview grid 1.65:1:1 on desktop, two columns on tablet, one on mobile.
-- Section headings: small label left (30%), title right. Stack on mobile.
+- Section headings: prominent section name (Experience, Projects, Skills, About me,
+  Contact), small solid accent marker, supporting subtitle underneath. No tiny
+  numbered section labels or oversized slogans competing with the section name.
 - Experience: sticky note left, dated timeline right. Unpin and stack on mobile.
 - Projects: Qasam image-led feature plus a two-column supporting project grid.
   Use expandable engineering notes for detail. Skills: two-column category panels.
@@ -104,7 +107,8 @@ ratios intact. No arbitrary scaling of a single scene actor independently.
 - Keeper: ready, launch, airborne, stretch, landed sequence.
 - Ball: existing transparent ball asset, synced to measured boot contact.
 - Project placeholders: bordered frame, index and explicit image label; 1.6:1.
-- Portrait placeholder: AS monogram and explicit photo-pending label; .82 ratio.
+- Portrait: `ayan-retro-portrait.png`, generated from Ayan's supplied photograph,
+  blue number 10 football kit. Reuse in About and crop via CSS for navigation avatar.
 - Social preview: preserve existing `public/og.png` unless explicitly changed.
 
 Never imply placeholders are real project imagery or invent experience/metrics.
@@ -126,7 +130,7 @@ without horizontal overflow at 320px. Keep visible keyboard focus on every contr
 
 1. Read this document and reuse shared tokens and components.
 2. Use supplied personal content; label missing material honestly.
-3. Pick an existing layout and one of the two fonts, not a new visual language.
+3. Pick an existing layout and the appropriate typography role, not a new visual language.
 4. Give the main action a lime primary; supporting actions a blue secondary.
 5. Keep content and controls readable at mobile widths and reduced motion.
 6. Run `npm test` and TypeScript validation; preserve animation regressions.

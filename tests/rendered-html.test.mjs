@@ -60,7 +60,10 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.doesNotMatch(html, /Scroll to start|Company · Dates|awaiting your photo/i);
   assert.match(html, /Featured project/);
   assert.match(html, /id="contact"/);
-  assert.match(html, /Portrait \/ Photo to come/);
+  assert.match(html, /ayan-retro-portrait\.png/);
+  assert.match(html, /<h2>About me<\/h2>/);
+  assert.match(html, /hero-copy__role/);
+  assert.doesNotMatch(html, /Portrait \/ Photo to come|05 \/ About/);
   assert.match(html, /App screenshots to come/);
   for (const name of ["RecAbility", "Rusteze Auto Detailing", "SheHacksPurple", "KKC Consulting", "SentinelAI", "U-Net Semantic Segmentation", "Autonomous Mobile Robot", "Self-Parking Car", "Financial Transaction Dashboard", "Water Filtration Unit", "18650 Battery Module Enclosure", "TMU Formula Racing"]) assert.ok(html.includes(name), name);
   assert.match(html, /Toronto Metropolitan University/);
@@ -86,6 +89,7 @@ test("uses the shared retro design system and distinct CTA variants", async () =
   const styles = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(styles, /@import "\.\/design-system.css"/);
   assert.match(tokens, /--font-body: "Space Mono"/);
+  assert.match(tokens, /--font-display: "Oxanium"/);
   assert.match(tokens, /--accent: #d5f568/);
   assert.match(tokens, /\.action:focus-visible/);
   assert.match(tokens, /prefers-reduced-motion/);

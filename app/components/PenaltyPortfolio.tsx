@@ -18,7 +18,7 @@ export function PenaltyPortfolio() {
   return (
     <main className="scroll-portfolio">
       <nav className="site-nav" aria-label="Portfolio navigation">
-        <a className="site-nav__brand" href="#overview" aria-label="Ayan Siddiqui FC home">AS</a>
+        <a className="site-nav__brand" href="#overview" aria-label="Ayan Siddiqui FC home"><img src="/game-assets/ayan-retro-portrait.png" alt="" width="64" height="64" /></a>
         <div className="site-nav__links"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></div>
         <ActionLink className="nav-work" href="#projects" compact>View work</ActionLink>
       </nav>
@@ -26,8 +26,9 @@ export function PenaltyPortfolio() {
         <div className="field-hero">
           <PenaltyScene />
           <div className="hero-copy">
-            <p className="hero-copy__program">{profile.title} / TMU</p>
             <h1>Ayan<br /><em>Siddiqui.</em></h1>
+            <p className="hero-copy__role">{profile.title}</p>
+            <p className="hero-copy__school">{profile.school}</p>
             <p className="hero-copy__intro">{profile.headline}</p>
             <p className="hero-description">From Formula SAE hardware and autonomous robots to AI applications and computer vision.</p>
             <div className="hero-actions"><ActionLink href="#projects">See my work</ActionLink><ActionLink href="#about" variant="secondary">About me</ActionLink></div>
@@ -69,7 +70,7 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section experience-section" id="experience">
-        <header className="section-heading"><p className="section-index">02 / Experience</p><h2>Learning through<br /><em>doing.</em></h2></header>
+        <header className="section-heading"><h2>Experience</h2><p className="section-subtitle">Learning through doing.</p></header>
         <div className="experience-layout">
           <aside className="timeline-note"><p className="eyebrow">Hardware / Software / People</p><div className="note-arrow" aria-hidden="true">↗</div><p>The process matters<br />as much as the result.</p><span>Design. Build. Test. Iterate.</span></aside>
           <div className="experience-timeline">{experiences.map((entry, index) => (
@@ -86,7 +87,7 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section projects-section" id="projects">
-        <header className="section-heading"><p className="section-index">03 / Selected work</p><h2>Systems that<br /><em>solve problems.</em></h2></header>
+        <header className="section-heading"><h2>Projects</h2><p className="section-subtitle">Systems that solve problems.</p></header>
         <article className="project-feature" id="project-qasam">
           <ImagePlaceholder label="Qasam / App screenshots to come" />
           <div className="project-description"><p className="eyebrow">01 / {featured.type}</p><h3>{featured.name}</h3><p>{featured.description}</p><ul className="detail-list">{featured.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={featured.tech} /><ActionLink href={featured.link}>{featured.linkLabel}</ActionLink></div>
@@ -104,16 +105,16 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section skills-section" id="skills">
-        <header className="section-heading"><p className="section-index">04 / Toolkit</p><h2>Across<br /><em>disciplines.</em></h2></header>
+        <header className="section-heading"><h2>Skills</h2><p className="section-subtitle">Across disciplines.</p></header>
         <div className="skills-grid">{skillGroups.map((group, index) => (
           <article className="skill-card" key={group.label}><h3>{String(index + 1).padStart(2, "0")} / {group.label}</h3><ul>{group.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></article>
         ))}</div>
       </section>
 
       <section className="portfolio-section about-section" id="about">
-        <header className="section-heading"><p className="section-index">05 / About</p><h2>Engineer first.<br /><em>Builder always.</em></h2></header>
+        <header className="section-heading"><h2>About me</h2><p className="section-subtitle">Engineer first. Builder always.</p></header>
         <div className="about-layout">
-          <ImagePlaceholder label="Portrait / Photo to come" portrait />
+          <figure className="about-portrait"><img src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width="1254" height="1254" loading="lazy" /><figcaption>Ayan Siddiqui <span>10 / Off the pitch</span></figcaption></figure>
           <div className="about-copy"><p className="eyebrow">{profile.location}</p>
             <p>I’m a Mechatronics Engineering student at Toronto Metropolitan University interested in the intersection of mechanical systems, robotics, AI, and software.</p>
             <p>I like working on problems where I can move between disciplines — designing a mechanical assembly in SolidWorks, debugging an autonomous robot, building an AI-backed application, or improving a real operating process.</p>
@@ -124,7 +125,7 @@ export function PenaltyPortfolio() {
         </div>
       </section>
       <section className="portfolio-section contact-section" id="contact">
-        <p className="section-index">06 / Contact</p><h2>Let’s build<br /><em>something real.</em></h2>
+        <header className="section-heading"><h2>Contact</h2><p className="section-subtitle">Let’s build something real.</p></header>
         <p>{profile.status}</p><p>{profile.location}</p>
         <div className="contact-actions"><ActionLink href={`mailto:${profile.email}`}>Email me</ActionLink><ActionLink href={profile.linkedin} variant="secondary">LinkedIn</ActionLink><ActionLink href={profile.github} variant="secondary">GitHub</ActionLink></div>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
