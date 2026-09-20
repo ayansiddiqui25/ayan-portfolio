@@ -1,4 +1,5 @@
 import { PenaltyScene } from "./PenaltyScene";
+import { PortfolioNav } from "./PortfolioNav";
 import { ActionLink } from "./ActionLink";
 import { portfolio } from "../portfolio-content";
 
@@ -17,11 +18,7 @@ export function PenaltyPortfolio() {
   const featured = projects[0];
   return (
     <main className="scroll-portfolio">
-      <nav className="site-nav" aria-label="Portfolio navigation">
-        <a className="site-nav__brand" href="#overview" aria-label="Ayan Siddiqui FC home"><img src="/game-assets/ayan-retro-portrait.png" alt="" width="64" height="64" /></a>
-        <div className="site-nav__links"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-        <ActionLink className="nav-work" href="#projects" compact>View work</ActionLink>
-      </nav>
+      <PortfolioNav />
       <section className="penalty-story" id="overview" aria-label="Scroll-controlled penalty kick">
         <div className="field-hero">
           <PenaltyScene />

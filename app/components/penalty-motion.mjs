@@ -18,6 +18,13 @@ export function scrollPenaltyTime(storyTop, storyHeight, heroHeight, viewportHei
   return 600 + progress * (DURATION - 600);
 }
 
+export function isPenaltyNavHidden(storyTop, storyHeight, heroHeight, viewportHeight, reducedMotion = false) {
+  // Hide as soon as scrolling starts, including a tall mobile intro. Restore only
+  // after the entire reversible sequence, not merely when the ball hits the net.
+  return !reducedMotion && storyTop < -8 &&
+    scrollPenaltyTime(storyTop, storyHeight, heroHeight, viewportHeight) < DURATION;
+}
+
 export function penaltyAt(ms) {
   const run = smooth(clamp((ms - 600) / (CONTACT - 600)));
   const flight = clamp((ms - CONTACT) / 720);

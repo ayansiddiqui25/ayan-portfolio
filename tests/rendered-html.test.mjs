@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { CONTACT, DURATION, penaltyAt, scrollPenaltyTime } from "../app/components/penalty-motion.mjs";
+import { CONTACT, DURATION, penaltyAt, scrollPenaltyTime, isPenaltyNavHidden } from "../app/components/penalty-motion.mjs";
 import test from "node:test";
 
 const routes = [
@@ -124,6 +124,21 @@ test("scroll controls reversible progress and waits for a tall mobile intro", ()
   assert.equal(scrollPenaltyTime(-500, 2460, 1200, 700), 600);
   assert.equal(scrollPenaltyTime(-1130, 2460, 1200, 700), 2000);
   assert.equal(scrollPenaltyTime(-1760, 2460, 1200, 700), DURATION);
+});
+
+test("navigation clears the full penalty sequence and restores reversibly", () => {
+  assert.equal(isPenaltyNavHidden(0, 2240, 800, 800), false);
+  assert.equal(isPenaltyNavHidden(-8, 2240, 800, 800), false);
+  assert.equal(isPenaltyNavHidden(-9, 2240, 800, 800), true);
+  assert.equal(isPenaltyNavHidden(-1200, 2240, 800, 800), true);
+  assert.equal(isPenaltyNavHidden(-1439, 2240, 800, 800), true);
+  assert.equal(isPenaltyNavHidden(-1440, 2240, 800, 800), false);
+  assert.equal(isPenaltyNavHidden(-2000, 2240, 800, 800), false);
+  assert.equal(isPenaltyNavHidden(-720, 2240, 800, 800), true);
+  assert.equal(isPenaltyNavHidden(0, 2240, 800, 800), false);
+  assert.equal(isPenaltyNavHidden(-200, 2460, 1200, 700), true);
+  assert.equal(isPenaltyNavHidden(-1760, 2460, 1200, 700), false);
+  assert.equal(isPenaltyNavHidden(-200, 1200, 1200, 700, true), false);
 });
 
 test("ball stays on the measured spot until the boot reaches it", () => {

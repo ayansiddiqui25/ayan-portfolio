@@ -117,6 +117,13 @@ transparent edges. Record provenance in `docs/imagegen-assets.md`.
 
 ## Motion and accessibility
 
+Navigation uses `PortfolioNav`: portrait and identity left, compact link group,
+lime CTA right. Rounded rectangular shell, not an oversized pill. Hide after
+the first 8px of scroll and keep hidden until `scrollPenaltyTime` reaches DURATION.
+Reverse this when scrolling back into the sequence; restore at the top. Hidden
+navigation is inert and excluded from assistive technology. With reduced motion,
+keep navigation visible. Recalculate on resize, restored pages, and hero resizing.
+
 Football motion is reversible and controlled by scrolling, never elapsed-time
 autoplay. Ball stays still until boot contact. Keeper dives away from the ball,
 lands on the field, and GOAL/net reaction finish before the next section.

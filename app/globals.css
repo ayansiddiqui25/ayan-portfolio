@@ -278,7 +278,28 @@ a.overview-card:hover { border-color: #f2eedf66; }
   .about-portrait { width: min(380px, 100%); }
 }
 
+/* Compact match-program navigation; leave the entire penalty sequence clear. */
+.site-nav { width: min(1180px, 92%); padding: 10px 16px 14px; gap: var(--space-6); border-radius: var(--radius-card); background: color-mix(in srgb, var(--night) 95%, transparent); box-shadow: 0 8px 28px #0003; transition: opacity 180ms ease, transform 180ms ease, visibility 180ms; }
+.site-nav__home { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+.site-nav__brand { width: 46px; height: 46px; border-radius: var(--radius-media); }
+.site-nav__identity { font: 600 17px/1.4 var(--font-display); }
+.site-nav__identity > span { display: block; color: var(--muted); font: 10px/1.6 var(--font-label); }
+.site-nav__links { gap: var(--space-1); }
+.site-nav__links a { padding: 10px 14px; border-radius: var(--radius-media); transition: background var(--motion-fast), color var(--motion-fast); }
+.site-nav__links a:hover { text-decoration: none; background: var(--surface-raised); color: var(--paper); }
+.site-nav--hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, calc(-100% - 24px)); }
+@media (max-width: 1000px) {
+  .site-nav__identity { display: none; }
+  .site-nav { gap: var(--space-3); }
+}
+@media (max-width: 650px) {
+  .site-nav { width: 94%; padding: 8px; gap: 8px; }
+  .site-nav__brand { width: 42px; height: 42px; }
+  .site-nav__links { gap: 0; }
+  .site-nav__links a { padding: 10px 5px; font-size: 10px; }
+}
 @media (prefers-reduced-motion: reduce) {
+  .site-nav, .site-nav__links a { transition: none; }
   html { scroll-behavior: auto; }
   .penalty-story { height: auto; }
   .field-hero { position: relative; top: auto; }
