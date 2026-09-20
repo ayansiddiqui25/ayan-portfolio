@@ -88,6 +88,9 @@ test("uses the shared retro design system and distinct CTA variants", async () =
   const tokens = readFileSync(new URL("../app/design-system.css", import.meta.url), "utf8");
   const styles = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(styles, /@import "\.\/design-system.css"/);
+  assert.match(styles, /container-type: size/);
+  assert.match(styles, /width: max\(100%, 200cqh, 1400px\)/);
+  assert.doesNotMatch(styles, /width: max\(100%, 200svh/);
   assert.match(tokens, /--font-body: "Space Mono"/);
   assert.match(tokens, /--font-display: "Oxanium"/);
   assert.match(tokens, /--accent: #d5f568/);

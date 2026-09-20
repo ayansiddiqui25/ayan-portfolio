@@ -79,6 +79,11 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 ## Layout and surfaces
 
 - Content max width 1280px, fluid width 88%; hero copy uses its scene-specific grid.
+- Desktop stadium must cover the actual hero height, not only the viewport.
+  `.penalty-stage` is a size container; its shared 2:1 world uses 200cqh to
+  cover the height without stretching individual actors or detaching the net.
+  Keep desktop intro spacing compact beneath the navigation; mobile retains
+  the stacked intro and square scene with its existing framing.
 - Base spacing scale: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
 - Section spacing: responsive 80–144px; mobile 80px. Cards use 24/32px padding.
 - Card radius 16px, media radius 8px, action radius 2px. Pills reserved for

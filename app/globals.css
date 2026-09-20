@@ -36,10 +36,11 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .hero-copy h1 em { font-weight: 400; font-style: normal; color: var(--arcade-gold); }
 .hero-copy__intro { max-width: 290px; margin: 30px 0; color: var(--paper); font-size: 17px; line-height: 1.6; }
 .down-arrow { position: absolute; z-index: 5; left: 5vw; bottom: 30px; display: grid; place-items: center; width: 44px; height: 44px; font-size: 28px; }
-.penalty-stage { position: absolute; inset: 0; overflow: hidden; }
+.penalty-stage { position: absolute; inset: 0; overflow: hidden; container-type: size; }
 .penalty-world {
   position: absolute; right: 0; bottom: 0;
-  width: max(100%, 200svh, 1400px); aspect-ratio: 2 / 1;
+  /* Cover the actual hero, not the viewport: copy can make the hero taller. */
+  width: max(100%, 200cqh, 1400px); aspect-ratio: 2 / 1;
   isolation: isolate; container-type: inline-size;
 }
 .penalty-world::after {
@@ -278,6 +279,17 @@ a.overview-card:hover { border-color: #f2eedf66; }
   .about-portrait { width: min(380px, 100%); }
 }
 
+@media (min-width: 1001px) {
+  .hero-copy { padding: 112px 0 72px; }
+  .hero-copy h1 { font-size: clamp(56px, 5.2vw, 92px); }
+  .hero-copy__role { margin-top: var(--space-4); font-size: clamp(21px, 1.65vw, 28px); }
+  .hero-copy__school { margin-bottom: var(--space-4); }
+  .hero-copy__intro { margin: var(--space-4) 0 var(--space-6); font-size: 16px; }
+  .hero-description { margin-bottom: var(--space-6); font-size: 13px; }
+  .availability { margin-top: var(--space-6); }
+  .hero-actions { gap: var(--space-4); }
+  .hero-actions .action { padding-inline: var(--space-4); }
+}
 /* Compact match-program navigation; leave the entire penalty sequence clear. */
 .site-nav { width: min(1180px, 92%); padding: 10px 16px 14px; gap: var(--space-6); border-radius: var(--radius-card); background: color-mix(in srgb, var(--night) 95%, transparent); box-shadow: 0 8px 28px #0003; transition: opacity 180ms ease, transform 180ms ease, visibility 180ms; }
 .site-nav__home { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
