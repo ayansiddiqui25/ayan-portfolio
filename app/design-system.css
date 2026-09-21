@@ -5,9 +5,9 @@
   font-style: normal; font-weight: 400; font-display: swap;
 }
 @font-face {
-  font-family: "Space Mono";
-  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
-  font-style: normal; font-weight: 400; font-display: swap;
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Variable.ttf") format("truetype");
+  font-style: normal; font-weight: 100 1000; font-display: swap;
 }
 
 @font-face {
@@ -31,7 +31,7 @@
   --focus: #72bbff;
   --font-arcade: "Press Start 2P", monospace;
   --font-display: "Oxanium", monospace;
-  --font-body: "Space Mono", monospace;
+  --font-body: "DM Sans", sans-serif;
   --font-label: var(--font-body);
   --space-1: 4px;
   --space-2: 8px;

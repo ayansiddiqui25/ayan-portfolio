@@ -287,7 +287,7 @@ export const portfolio = {
       "name": "Water Filtration Unit",
       "type": "Human Factors / Engineering Design",
       "image": "Design render to come",
-      "description": "An engineering design project focused on improving the usability and maintenance accessibility of a water filtration unit.",
+      "description": "A gravity-fed rainwater filtration concept designed around affordability, accessible maintenance, and use without electricity.",
       "points": [
         "Improved reach and maintenance accessibility by approximately 25%.",
         "Used weighted trade-off analysis to reduce design concepts by 50%.",
@@ -302,7 +302,11 @@ export const portfolio = {
       "result": "Approximately 25% better maintenance accessibility",
       "link": "",
       "linkLabel": "",
-      "category": "hardware"
+      "category": "hardware",
+      "gallery": [
+        { "src": "/project-assets/water-filtration/system-diagram.png", "alt": "WFU system diagram connecting water capture, filtration, storage, outflow, maintenance, and user feedback", "caption": "System architecture", "width": 981, "height": 651 },
+        { "src": "/project-assets/water-filtration/ayan-concept.jpeg", "alt": "Ayan's Design 4 sketch showing a raised rainwater tank, overflow indicator, filtration layers, and accessible valve", "caption": "My concept — Design 4, Milestone 2 report", "width": 1912, "height": 859 }
+      ]
     },
     {
       "id": "battery-enclosure",

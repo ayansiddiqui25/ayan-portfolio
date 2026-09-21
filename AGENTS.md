@@ -7,9 +7,9 @@ tokens, components, typography, layouts, and assets instead of inventing a new s
 - No red/coral/orange CTA buttons. Primary actions are lime raised arcade keys;
   secondary actions are blue outlined keys. Use `ActionLink` for navigation CTAs.
 - Oxanium for readable retro headings and CTAs; Press Start 2P for GOAL only.
-  Space Mono for body, navigation, and labels. Section names are prominent titles,
+  DM Sans for body, navigation, and labels. Section names are prominent titles,
   not tiny numbered eyebrows. The student title belongs directly below Ayan's name.
-  Do not reintroduce Arial, generic sans-serif, or editorial serif styles.
+  Keep small text readable (14px labels, 17px body); do not reintroduce pixel or monospace body text.
 - Keep the scroll-driven football scene and its contact/landing timing intact.
 - Personal content is supplied in `app/portfolio-content.ts`. Ayan studies
   Mechatronics Engineering at TMU, expected April 2028. Never invent claims or

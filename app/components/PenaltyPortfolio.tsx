@@ -15,7 +15,6 @@ function Tags({ items }: { items: string[] }) {
 }
 export function PenaltyPortfolio() {
   const { profile, experiences, projects, skillGroups } = portfolio;
-  const featured = projects[0];
   return (
     <main className="scroll-portfolio">
       <PortfolioNav />
@@ -27,7 +26,6 @@ export function PenaltyPortfolio() {
             <p className="hero-copy__role">{profile.title}</p>
             <p className="hero-copy__school">{profile.school}</p>
             <p className="hero-copy__intro">{profile.headline}</p>
-            <p className="hero-description">From Formula SAE hardware and autonomous robots to AI applications and computer vision.</p>
             <div className="hero-actions"><ActionLink href="#projects">See my work</ActionLink><ActionLink href="#about" variant="secondary">About me</ActionLink></div>
             <p className="availability">{profile.status}</p>
           </div>
@@ -36,24 +34,23 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="overview-grid page-width" aria-label="Portfolio at a glance">
-        <a className="overview-card overview-card--featured" href="#project-qasam">
-          <p className="eyebrow">Featured project / 01</p><h2>Qasam</h2>
+        <a className="overview-card overview-card--featured" href="/projects/qasam">
+          <p className="eyebrow">Featured project</p><h2>Qasam</h2>
           <p>An accountability and app-blocking product designed to help Muslims build consistency around the five daily prayers.</p>
           <span className="text-link">Explore the project <span aria-hidden="true">↗</span></span>
           <ImagePlaceholder label="Qasam / App screenshots to come" />
         </a>
-        <a className="overview-card overview-card--building" href="#project-formula-racing">
+        <a className="overview-card overview-card--building" href="/projects/formula-racing">
           <p className="eyebrow">Currently building</p><h2>TMU Formula Racing</h2>
           <p>Designing race-ready hardware around real vehicle constraints: a removable electronics enclosure for the headrest area.</p>
-          <span className="status-label">Mechanical / Formula SAE</span>
         </a>
         <a className="overview-card" href="#experience">
-          <p className="eyebrow">Experience</p><h2>From CAD<br /><em>to production.</em></h2>
+          <h2>Experience</h2>
           <p>Engineering design at RecAbility, software at KKC, project coordination, and running a business.</p>
           <span className="text-link">View the timeline <span aria-hidden="true">↗</span></span>
         </a>
         <a className="overview-card" href="#about">
-          <p className="eyebrow">About</p><h2>Engineer first.<br /><em>Builder always.</em></h2>
+          <h2>About me</h2>
           <p>Mechatronics at TMU. Mechanical systems, robotics, AI, and software.</p>
           <span className="text-link">About me <span aria-hidden="true">↗</span></span>
         </a>
@@ -67,9 +64,8 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section experience-section" id="experience">
-        <header className="section-heading"><h2>Experience</h2><p className="section-subtitle">Learning through doing.</p></header>
+        <header className="section-heading"><h2>Experience</h2></header>
         <div className="experience-layout">
-          <aside className="timeline-note"><p className="eyebrow">Hardware / Software / People</p><div className="note-arrow" aria-hidden="true">↗</div><p>The process matters<br />as much as the result.</p><span>Design. Build. Test. Iterate.</span></aside>
           <div className="experience-timeline">{experiences.map((entry, index) => (
             <article className="timeline-entry" key={entry.company}>
               <div className="timeline-date">{entry.dates}</div>
@@ -84,59 +80,47 @@ export function PenaltyPortfolio() {
       </section>
 
       <section className="portfolio-section projects-section" id="projects">
-        <header className="section-heading"><h2>Projects</h2><p className="section-subtitle">Systems that solve problems.</p></header>
+        <header className="section-heading"><h2>Projects</h2></header>
         <nav className="project-jumps" aria-label="Project categories"><a href="#software-projects">Software &amp; AI ↓</a><a href="#hardware-projects">Hardware &amp; Mechanical ↓</a></nav>
         {(["software", "hardware"] as const).map(category => (
           <section className="project-category" id={category + "-projects"} key={category} aria-labelledby={category + "-title"}>
-            <header className="project-category__heading"><h3 id={category + "-title"}>{category === "software" ? "Software & AI" : "Hardware & Mechanical"}</h3><p>{category === "software" ? "Products, applications, and data-driven systems." : "Mechanical design, manufacturing, and robotics."}</p></header>
-            {category === "software" && <article className="project-feature" id="project-qasam">
-              <ImagePlaceholder label="Qasam / App screenshots to come" />
-              <div className="project-description"><p className="eyebrow">Featured / {featured.type}</p><h4>{featured.name}</h4><p>{featured.description}</p><ul className="detail-list">{featured.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={featured.tech} /><ActionLink href={featured.link}>{featured.linkLabel}</ActionLink></div>
-            </article>}
-            <div className="upcoming-projects">{projects.filter(project => project.category === category && project.id !== "qasam").sort((a, b) => Number(b.id === "self-parking-car") - Number(a.id === "self-parking-car")).map(project => (
-              <article className={`project-placeholder project-card ${project.id === "self-parking-car" ? "project-card--car" : ""}`} id={`project-${project.id}`} key={project.id}>
-                {project.gallery ? <div className="project-gallery">{project.gallery.map((picture, index) => (
-                  <figure key={picture.src}><a href={picture.src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${picture.caption} full size (new tab)`}><img src={picture.src} alt={picture.alt} width={picture.width} height={picture.height} loading="lazy" /></a><figcaption>{String(index + 1).padStart(2, "0")} / {picture.caption} <span aria-hidden="true">↗</span></figcaption></figure>
-                ))}</div> : <ImagePlaceholder label={project.image} />}
-                <div><p className="eyebrow">{project.type}</p><h4>{project.name}</h4>{project.role && <p className="project-role">{project.role}</p>}<p>{project.description}</p><p className="project-result">{project.result}</p>
-                  <details className="project-details" open={project.id === "self-parking-car"}><summary>Engineering notes <span aria-hidden="true">+</span></summary><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul></details>
-                  <Tags items={project.tech} />
-                  {project.gallery && <p className="project-source">Team report · MEC 322 · Winter 2026. Drawings shown as submitted; select an image to inspect it full size.</p>}
-                  {project.link && <ActionLink href={project.link} variant="secondary" compact>{project.linkLabel}</ActionLink>}
-                </div>
-              </article>
+            <header className="project-category__heading"><h3 id={category + "-title"}>{category === "software" ? "Software & AI" : "Hardware & Mechanical"}</h3></header>
+            <div className="upcoming-projects">{projects.filter(project => project.category === category).sort((a, b) => Number(b.id === "self-parking-car") - Number(a.id === "self-parking-car")).map(project => (
+              <a className="project-summary" href={`/projects/${project.id}`} id={`project-${project.id}`} key={project.id}>
+                {project.gallery ? <div className="project-summary__image"><img src={project.gallery[0].src} alt={project.gallery[0].alt} width={project.gallery[0].width} height={project.gallery[0].height} loading="lazy" /></div> : <ImagePlaceholder label={project.image} />}
+                <div className="project-summary__body"><h4>{project.name}</h4><p>{project.description}</p><span className="text-link">View project <span aria-hidden="true">↗</span></span></div>
+              </a>
             ))}</div>
           </section>
         ))}
       </section>
 
       <section className="portfolio-section skills-section" id="skills">
-        <header className="section-heading"><h2>Skills</h2><p className="section-subtitle">Across disciplines.</p></header>
-        <div className="skills-grid">{skillGroups.map((group, index) => (
-          <article className="skill-card" key={group.label}><h3>{String(index + 1).padStart(2, "0")} / {group.label}</h3><ul>{group.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></article>
+        <header className="section-heading"><h2>Skills</h2></header>
+        <div className="skills-grid">{skillGroups.map(group => (
+          <article className="skill-card" key={group.label}><h3>{group.label}</h3><ul>{group.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></article>
         ))}</div>
       </section>
 
       <section className="portfolio-section about-section" id="about">
-        <header className="section-heading"><h2>About me</h2><p className="section-subtitle">Engineer first. Builder always.</p></header>
+        <header className="section-heading"><h2>About me</h2></header>
         <div className="about-layout">
-          <figure className="about-portrait"><img src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width="1254" height="1254" loading="lazy" /><figcaption>Ayan Siddiqui <span>10 / Off the pitch</span></figcaption></figure>
+          <figure className="about-portrait"><img src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width="1254" height="1254" loading="lazy" /><figcaption>Ayan Siddiqui</figcaption></figure>
           <div className="about-copy"><p className="eyebrow">{profile.location}</p>
             <p>I’m a Mechatronics Engineering student at Toronto Metropolitan University interested in the intersection of mechanical systems, robotics, AI, and software.</p>
             <p>I like working on problems where I can move between disciplines — designing a mechanical assembly in SolidWorks, debugging an autonomous robot, building an AI-backed application, or improving a real operating process.</p>
             <p>Outside of engineering, I co-run an auto detailing business, follow Formula 1, basketball and football, and enjoy building products and experimenting with new technology.</p>
-            <p>I’m looking for opportunities to work on technically challenging products and learn from strong engineering teams.</p>
             <dl className="education"><div><dt>Education</dt><dd>{profile.school}</dd></div><div><dt>Degree</dt><dd>{profile.degree}</dd></div><div><dt>Expected graduation</dt><dd>{profile.graduation}</dd></div></dl>
           </div>
         </div>
       </section>
       <section className="portfolio-section contact-section" id="contact">
-        <header className="section-heading"><h2>Contact</h2><p className="section-subtitle">Let’s build something real.</p></header>
+        <header className="section-heading"><h2>Contact</h2></header>
         <p>{profile.status}</p><p>{profile.location}</p>
         <div className="contact-actions"><ActionLink href={`mailto:${profile.email}`}>Email me</ActionLink><ActionLink href={profile.linkedin} variant="secondary">LinkedIn</ActionLink><ActionLink href={profile.github} variant="secondary">GitHub</ActionLink></div>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
       </section>
-      <footer className="site-footer"><a href="#overview">Ayan Siddiqui FC</a><span>Engineering across hardware, software, and AI.</span><a href="#overview">Back to top ↑</a></footer>
+      <footer className="site-footer"><a href="#overview">Ayan Siddiqui FC</a><a href="#overview">Back to top ↑</a></footer>
     </main>
   );
 }

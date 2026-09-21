@@ -72,8 +72,8 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.match(html, /mailto:ayan.siddiqui@torontomu.ca/);
   assert.match(html, /https:\/\/linkedin.com\/in\/ayansidd/);
   assert.match(html, /https:\/\/github.com\/ayansiddiqui25/);
-  assert.match(html, /id6806862402/);
-  assert.match(html, /37.52%/);
+  assert.match(html, /href="\/projects\/qasam"/);
+  assert.match(html, /href="\/projects\/unet"/);
   assert.match(html, /approximately 40%/);
   assert.doesNotMatch(html, /computer engineering student|Experience details coming soon|Contact details and social links coming soon/i);
   assert.doesNotMatch(html, /Pranoy|Mukherjee|Glassbox|Tradexim|Finavator/i);
@@ -93,10 +93,12 @@ test("separates software and hardware projects and shows the team-led car galler
     assert.ok(hardware.includes(`id="project-${id}"`));
     assert.ok(!software.includes(`id="project-${id}"`));
   }
-  assert.match(hardware, /Project Lead/);
-  assert.match(hardware, /Team project/);
-  for (const file of ["selected-concept.jpeg", "assembly-drawing.png", "drive-gear.png"]) assert.ok(hardware.includes(file));
-  assert.match(hardware, /not a competition result/);
+  assert.match(hardware, /selected-concept.jpeg/);
+  const car = await (await render('/projects/self-parking-car')).text();
+  assert.match(car, /Project Lead/);
+  assert.match(car, /Team project/);
+  for (const file of ["selected-concept.jpeg", "assembly-drawing.png", "drive-gear.png"]) assert.ok(car.includes(file));
+  assert.match(car, /not a competition result/);
   assert.doesNotMatch(hardware, /Vehicle photo to come/);
 });
 
@@ -110,12 +112,41 @@ test("uses the shared retro design system and distinct CTA variants", async () =
   assert.match(styles, /container-type: size/);
   assert.match(styles, /width: max\(100%, 200cqh, 1400px\)/);
   assert.doesNotMatch(styles, /width: max\(100%, 200svh/);
-  assert.match(tokens, /--font-body: "Space Mono"/);
+  assert.match(tokens, /--font-body: "DM Sans"/);
   assert.match(tokens, /--font-display: "Oxanium"/);
   assert.match(tokens, /--accent: #d5f568/);
   assert.match(tokens, /\.action:focus-visible/);
   assert.match(tokens, /prefers-reduced-motion/);
   assert.doesNotMatch(styles + tokens, /Arial|Helvetica|DM Serif|arcade-coral|#ff947d/i);
+});
+
+test("every project opens a complete case study and invalid projects return 404", async () => {
+  const home = await (await render()).text();
+  for (const slug of ['qasam', 'formula-racing', 'sentinel-ai', 'unet', 'autonomous-robot', 'self-parking-car', 'financial-dashboard', 'water-filtration', 'battery-enclosure']) {
+    assert.ok(home.includes(`href="/projects/${slug}"`), slug);
+    const response = await render(`/projects/${slug}`);
+    assert.equal(response.status, 200, slug);
+    const html = await response.text();
+    for (const heading of ['Problem', 'Solution', 'My role', 'Outcome']) assert.ok(html.includes(`<h2>${heading}</h2>`), `${slug}: ${heading}`);
+    assert.ok(html.includes(`href="/#project-${slug}"`));
+  }
+  assert.equal((await render('/projects/not-a-project')).status, 404);
+});
+
+test("WFU has source images, careful attribution, and record-specific social metadata", async () => {
+  const wfu = await (await render('/projects/water-filtration')).text();
+  assert.match(wfu, /system-diagram\.png/);
+  assert.match(wfu, /ayan-concept\.jpeg/);
+  assert.match(wfu, /Design 4/);
+  assert.match(wfu, /require physical validation/);
+  for (const [slug, title] of [['water-filtration', 'Water Filtration Unit'], ['qasam', 'Qasam']]) {
+    const html = await (await render(`/projects/${slug}`)).text();
+    assert.ok(html.includes(`<title>${title} | Ayan Siddiqui FC</title>`));
+    assert.ok(html.includes(`property="og:title" content="${title}"`));
+    assert.ok(html.includes(`name="twitter:title" content="${title}"`));
+    assert.doesNotMatch(html, /\/og\.png/);
+  }
+  assert.match(wfu, /https:\/\/pixel-portfolio-fc\.sidayan25\.chatgpt\.site\/project-assets\/water-filtration\/system-diagram\.png/);
 });
 
 test("redirects legacy pages into the unified scrolling portfolio", async () => {

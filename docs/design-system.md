@@ -28,8 +28,8 @@ Use the three bundled, locally served, open-license fonts. No runtime font CDN.
 | Main name | Oxanium | 700, 60–112px desktop; 56–96px mobile/tablet |
 | Section titles | Oxanium | 700, 42–72px desktop; 38–56px mobile; actual section names |
 | Card titles | Oxanium | 600, 24–34px; 1.25–1.3 leading |
-| Body and navigation | Space Mono | Body 15–17px, line height 1.7–1.85; navigation 12–13px |
-| Labels, dates, tags | Space Mono | 11–12px; uppercase labels with subtle tracking |
+| Body and navigation | DM Sans | Body 17–18px, line height 1.7–1.8; navigation 13–15px |
+| Labels, dates, tags | DM Sans | 14px; minimal tracking, no pixel lettering |
 | CTA label | Oxanium | 700, 16px; compact navigation CTA 14px |
 
 Keep paragraphs to approximately 55–65 characters per line. Pixel lettering is
@@ -63,7 +63,7 @@ Never rely on color alone to communicate state. Target WCAG AA text contrast.
   Use for the most important action in a section. One primary per action group.
 - Secondary: dark surface, blue border and label, same arcade-key geometry.
   Use for a real alternative such as About me, source code, or a live demo.
-- Tertiary: Space Mono text link with blue arrow; underline on hover/focus.
+- Tertiary: DM Sans text link with blue arrow; underline on hover/focus.
   Inline card links must not compete with a primary CTA.
 - `ActionLink` is a native anchor for navigation. A state-changing action must
   be a native button using `.action` and its variant class; never a clickable div.
@@ -90,16 +90,18 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   navigation shell, badges, and tags, never primary CTAs.
 - Preserve overview grid 1.65:1:1 on desktop, two columns on tablet, one on mobile.
 - Section headings: prominent section name (Experience, Projects, Skills, About me,
-  Contact), small solid accent marker, supporting subtitle underneath. No tiny
+  Contact), small solid accent marker, no repetitive slogan underneath. No tiny
   numbered section labels or oversized slogans competing with the section name.
-- Experience: sticky note left, dated timeline right. Unpin and stack on mobile.
+- Experience: a focused dated timeline without a decorative slogan card.
 - Projects: separate Software & AI and Hardware & Mechanical sections, with
   anchor jump links. Category lives on each project in `app/portfolio-content.ts`.
-  Qasam leads software; the self-parking car leads hardware with a team-credit
-  gallery and project-lead attribution. Robotics belongs in hardware. Use real
-  report drawings with contain sizing, captions, and full-resolution links.
-  Other projects use a two-column supporting grid.
-  Use expandable engineering notes for detail. Skills: two-column category panels.
+  Qasam leads software; the self-parking car leads hardware. Robotics belongs in
+  hardware. Whole-card links open `/projects/[slug]` with Problem, Solution, My role,
+  and Outcome. Keep homepage cards concise; galleries, detailed results, credits,
+  and external links belong on case-study pages. Use real report drawings with
+  contain sizing, captions, and full-resolution links. Separate personal contributions
+  from team work and design targets from validated results. Case-study copy lives in
+  `app/project-details.ts`. Skills: two-column category panels.
   Supplied personal content lives in `app/portfolio-content.ts`; only images and
   the résumé file are pending. Preserve approximate qualifiers on metrics.
 - Breakpoints: 1000px tablet/stacked hero, 650px single-column content/mobile nav.
