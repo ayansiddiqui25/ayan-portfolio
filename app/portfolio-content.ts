@@ -119,7 +119,8 @@ export const portfolio = {
       ],
       "result": "Published on the App Store",
       "link": "https://apps.apple.com/ca/app/prayer-app-blocker-qasam/id6806862402",
-      "linkLabel": "View on App Store"
+      "linkLabel": "View on App Store",
+      "category": "software"
     },
     {
       "id": "formula-racing",
@@ -139,7 +140,8 @@ export const portfolio = {
       ],
       "result": "Currently building",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "hardware"
     },
     {
       "id": "sentinel-ai",
@@ -163,7 +165,8 @@ export const portfolio = {
       ],
       "result": "Structured incident investigation and summaries",
       "link": "https://youtu.be/CWl1aig73W8",
-      "linkLabel": "Watch demo"
+      "linkLabel": "Watch demo",
+      "category": "software"
     },
     {
       "id": "unet",
@@ -184,7 +187,8 @@ export const portfolio = {
       ],
       "result": "37.52% mean IoU",
       "link": "https://github.com/ayansiddiqui25/unet-segmentation",
-      "linkLabel": "View code"
+      "linkLabel": "View code",
+      "category": "software"
     },
     {
       "id": "autonomous-robot",
@@ -205,27 +209,56 @@ export const portfolio = {
       ],
       "result": "Approximately 20% less debugging time",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "hardware"
     },
     {
       "id": "self-parking-car",
       "name": "Self-Parking Car",
       "type": "MEC 322 / Manufacturing Fundamentals",
-      "image": "Vehicle photo to come",
-      "description": "Designed and manufactured a mechanical self-parking vehicle using laser-cut acrylic components, gearing, steering mechanisms, and elastic energy storage.",
+      "image": "Selected concept and CAD drawings",
+      "description": "Led the team project to design and manufacture a mechanically powered self-parking car for MEC 322. The challenge: knock over Jenga blocks and park in a designated zone using stored elastic energy, one acrylic sheet, and limited fasteners.",
       "points": [
-        "Evaluated 6 concepts with a weighted design matrix, reducing the set by 83% and selecting a final concept with a 91-point score.",
-        "Used a 2.25:1 gear ratio, 0.008 in steering-joint clearance, and a 3.00 in elastic-band energy-storage span.",
-        "Produced CAD and assembly drawings, defined dimensional constraints and clearance fits, and manufactured and assembled the mechanical drivetrain."
+        "Led the project; the design and drawings shown here are the team's work.",
+        "Compared six concepts using a weighted evaluation matrix. Concept 1 was selected with the highest design score of 91; this is a selection score, not a competition result.",
+        "Chose a 2.25:1 gear ratio to prioritize wheel torque over top speed, with large rear wheels and elastic-band traction.",
+        "Used a pivoting front steering module with a 0.12 in hole and 0.112 in screw, giving 0.008 in clearance for rotation.",
+        "Placed the elastic-band anchor approximately 3.00 in from the pinion axle to store mechanical energy.",
+        "Developed CAD assembly and component drawings, then laser-cut and assembled the acrylic prototype."
       ],
       "tech": [
         "SolidWorks",
         "Mechanical Design",
         "Manufacturing"
       ],
-      "result": "6 concepts → 1 manufactured design",
+      "result": "6 concepts evaluated · 91-point selected concept",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "hardware",
+      "role": "Project Lead · Team project",
+      "gallery": [
+        {
+          "src": "/project-assets/self-parking-car/selected-concept.jpeg",
+          "alt": "Annotated team concept drawing showing the car's gears, elastic-band drive, rear wheels, and front steering module",
+          "caption": "Selected concept — annotated mechanism",
+          "width": 1584,
+          "height": 2048
+        },
+        {
+          "src": "/project-assets/self-parking-car/assembly-drawing.png",
+          "alt": "Team CAD assembly drawing with orthographic views, isometric view, and bill of materials",
+          "caption": "Assembly drawing & bill of materials",
+          "width": 1058,
+          "height": 818
+        },
+        {
+          "src": "/project-assets/self-parking-car/drive-gear.png",
+          "alt": "Dimensioned CAD drawing of the 36-tooth acrylic drive gear",
+          "caption": "36-tooth drive gear — manufacturing drawing",
+          "width": 1016,
+          "height": 784
+        }
+      ]
     },
     {
       "id": "financial-dashboard",
@@ -246,7 +279,8 @@ export const portfolio = {
       ],
       "result": "Interactive database-backed transaction analysis",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "software"
     },
     {
       "id": "water-filtration",
@@ -267,7 +301,8 @@ export const portfolio = {
       ],
       "result": "Approximately 25% better maintenance accessibility",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "hardware"
     },
     {
       "id": "battery-enclosure",
@@ -286,7 +321,8 @@ export const portfolio = {
       ],
       "result": "Enclosure for a 3×3 cell array",
       "link": "",
-      "linkLabel": ""
+      "linkLabel": "",
+      "category": "hardware"
     }
   ],
   "skillGroups": [

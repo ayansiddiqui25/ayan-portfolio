@@ -93,7 +93,12 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   Contact), small solid accent marker, supporting subtitle underneath. No tiny
   numbered section labels or oversized slogans competing with the section name.
 - Experience: sticky note left, dated timeline right. Unpin and stack on mobile.
-- Projects: Qasam image-led feature plus a two-column supporting project grid.
+- Projects: separate Software & AI and Hardware & Mechanical sections, with
+  anchor jump links. Category lives on each project in `app/portfolio-content.ts`.
+  Qasam leads software; the self-parking car leads hardware with a team-credit
+  gallery and project-lead attribution. Robotics belongs in hardware. Use real
+  report drawings with contain sizing, captions, and full-resolution links.
+  Other projects use a two-column supporting grid.
   Use expandable engineering notes for detail. Skills: two-column category panels.
   Supplied personal content lives in `app/portfolio-content.ts`; only images and
   the résumé file are pending. Preserve approximate qualifiers on metrics.

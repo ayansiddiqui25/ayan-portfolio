@@ -85,20 +85,29 @@ export function PenaltyPortfolio() {
 
       <section className="portfolio-section projects-section" id="projects">
         <header className="section-heading"><h2>Projects</h2><p className="section-subtitle">Systems that solve problems.</p></header>
-        <article className="project-feature" id="project-qasam">
-          <ImagePlaceholder label="Qasam / App screenshots to come" />
-          <div className="project-description"><p className="eyebrow">01 / {featured.type}</p><h3>{featured.name}</h3><p>{featured.description}</p><ul className="detail-list">{featured.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={featured.tech} /><ActionLink href={featured.link}>{featured.linkLabel}</ActionLink></div>
-        </article>
-        <div className="upcoming-projects">{projects.slice(1).map((project, index) => (
-          <article className="project-placeholder project-card" id={`project-${project.id}`} key={project.id}>
-            <ImagePlaceholder label={project.image} />
-            <div><p className="eyebrow">{String(index + 2).padStart(2, "0")} / {project.type}</p><h3>{project.name}</h3><p>{project.description}</p><p className="project-result">{project.result}</p>
-              <details className="project-details"><summary>Engineering notes <span aria-hidden="true">+</span></summary><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul></details>
-              <Tags items={project.tech} />
-              {project.link && <ActionLink href={project.link} variant="secondary" compact>{project.linkLabel}</ActionLink>}
-            </div>
-          </article>
-        ))}</div>
+        <nav className="project-jumps" aria-label="Project categories"><a href="#software-projects">Software &amp; AI ↓</a><a href="#hardware-projects">Hardware &amp; Mechanical ↓</a></nav>
+        {(["software", "hardware"] as const).map(category => (
+          <section className="project-category" id={category + "-projects"} key={category} aria-labelledby={category + "-title"}>
+            <header className="project-category__heading"><h3 id={category + "-title"}>{category === "software" ? "Software & AI" : "Hardware & Mechanical"}</h3><p>{category === "software" ? "Products, applications, and data-driven systems." : "Mechanical design, manufacturing, and robotics."}</p></header>
+            {category === "software" && <article className="project-feature" id="project-qasam">
+              <ImagePlaceholder label="Qasam / App screenshots to come" />
+              <div className="project-description"><p className="eyebrow">Featured / {featured.type}</p><h4>{featured.name}</h4><p>{featured.description}</p><ul className="detail-list">{featured.points.map(point => <li key={point}>{point}</li>)}</ul><Tags items={featured.tech} /><ActionLink href={featured.link}>{featured.linkLabel}</ActionLink></div>
+            </article>}
+            <div className="upcoming-projects">{projects.filter(project => project.category === category && project.id !== "qasam").sort((a, b) => Number(b.id === "self-parking-car") - Number(a.id === "self-parking-car")).map(project => (
+              <article className={`project-placeholder project-card ${project.id === "self-parking-car" ? "project-card--car" : ""}`} id={`project-${project.id}`} key={project.id}>
+                {project.gallery ? <div className="project-gallery">{project.gallery.map((picture, index) => (
+                  <figure key={picture.src}><a href={picture.src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${picture.caption} full size (new tab)`}><img src={picture.src} alt={picture.alt} width={picture.width} height={picture.height} loading="lazy" /></a><figcaption>{String(index + 1).padStart(2, "0")} / {picture.caption} <span aria-hidden="true">↗</span></figcaption></figure>
+                ))}</div> : <ImagePlaceholder label={project.image} />}
+                <div><p className="eyebrow">{project.type}</p><h4>{project.name}</h4>{project.role && <p className="project-role">{project.role}</p>}<p>{project.description}</p><p className="project-result">{project.result}</p>
+                  <details className="project-details" open={project.id === "self-parking-car"}><summary>Engineering notes <span aria-hidden="true">+</span></summary><ul className="detail-list">{project.points.map(point => <li key={point}>{point}</li>)}</ul></details>
+                  <Tags items={project.tech} />
+                  {project.gallery && <p className="project-source">Team report · MEC 322 · Winter 2026. Drawings shown as submitted; select an image to inspect it full size.</p>}
+                  {project.link && <ActionLink href={project.link} variant="secondary" compact>{project.linkLabel}</ActionLink>}
+                </div>
+              </article>
+            ))}</div>
+          </section>
+        ))}
       </section>
 
       <section className="portfolio-section skills-section" id="skills">

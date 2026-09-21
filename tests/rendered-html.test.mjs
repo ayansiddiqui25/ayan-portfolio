@@ -81,6 +81,25 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
+test("separates software and hardware projects and shows the team-led car gallery", async () => {
+  const html = await (await render()).text();
+  const softwareStart = html.indexOf('id="software-projects"');
+  const hardwareStart = html.indexOf('id="hardware-projects"');
+  assert.ok(softwareStart > 0 && hardwareStart > softwareStart);
+  const software = html.slice(softwareStart, hardwareStart);
+  const hardware = html.slice(hardwareStart, html.indexOf('id="skills"'));
+  for (const id of ["qasam", "sentinel-ai", "unet", "financial-dashboard"]) assert.ok(software.includes(`id="project-${id}"`));
+  for (const id of ["self-parking-car", "formula-racing", "autonomous-robot", "water-filtration", "battery-enclosure"]) {
+    assert.ok(hardware.includes(`id="project-${id}"`));
+    assert.ok(!software.includes(`id="project-${id}"`));
+  }
+  assert.match(hardware, /Project Lead/);
+  assert.match(hardware, /Team project/);
+  for (const file of ["selected-concept.jpeg", "assembly-drawing.png", "drive-gear.png"]) assert.ok(hardware.includes(file));
+  assert.match(hardware, /not a competition result/);
+  assert.doesNotMatch(hardware, /Vehicle photo to come/);
+});
+
 test("uses the shared retro design system and distinct CTA variants", async () => {
   const html = await (await render()).text();
   assert.match(html, /class="action action--primary/);
