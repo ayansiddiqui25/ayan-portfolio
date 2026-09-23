@@ -4,9 +4,9 @@ export const portfolio = {
     "name": "Ayan Siddiqui",
     "title": "Mechatronics Engineering Student",
     "school": "Toronto Metropolitan University (TMU)",
-    "degree": "Bachelor of Engineering — Mechatronics Engineering",
+    "degree": "Bachelor of Engineering in Mechatronics Engineering",
     "graduation": "April 2028",
-    "location": "Milton, Ontario, Canada",
+    "location": "Toronto, Ontario, Canada",
     "headline": "Engineering across hardware, software, and AI.",
     "intro": "I’m a Mechatronics Engineering student at TMU building across mechanical design, robotics, AI, and software — from Formula SAE hardware and autonomous robots to applications and computer vision systems.",
     "status": "Open to 2027 co-op and internship opportunities.",
@@ -41,7 +41,7 @@ export const portfolio = {
       "company": "Rusteze Auto Detailing",
       "role": "Co-Owner",
       "dates": "May 2025 – Present",
-      "location": "Milton, Ontario",
+      "location": "Toronto, Ontario",
       "description": "Co-founded and operate an automotive detailing business serving 150+ customers.",
       "points": [
         "Improved service turnaround time by approximately 25%.",
@@ -422,3 +422,6 @@ export const portfolio = {
 // Temporarily hidden, not deleted. Remove an ID here to restore its case study.
 const hiddenProjectIds = new Set(["financial-dashboard", "formula-racing", "battery-enclosure"]);
 export const visibleProjects = portfolio.projects.filter(project => !hiddenProjectIds.has(project.id));
+
+// Awaiting Ayan's certification names and issuers. Do not invent credentials.
+export const certifications: { name: string; issuer: string; date?: string; url?: string }[] = [];

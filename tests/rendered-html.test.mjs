@@ -170,6 +170,18 @@ test("pictures use in-page dialog buttons instead of image links", async () => {
   }
 });
 
+test("About uses supplied personal copy, Toronto locations, and no em dashes", async () => {
+  const html = await (await render()).text();
+  const about = html.slice(html.indexOf('id="about"'), html.indexOf('id="contact"'));
+  assert.match(about, /Outside of work and school, I run two successful businesses/);
+  assert.match(about, /HUGE football \(or soccer\) fan/);
+  assert.match(about, /huge Arsenal fan/);
+  assert.doesNotMatch(about, /—|&mdash;|&#8212;/);
+  assert.doesNotMatch(html, /Milton/i);
+  assert.match(about, /Toronto, Ontario, Canada/);
+  assert.doesNotMatch(html, /id="certifications"/); // No invented or empty credentials.
+});
+
 test("skill pills have clean labels without decorative slashes", async () => {
   const html = await (await render()).text();
   const skills = html.slice(html.indexOf('id="skills"'), html.indexOf('id="about"'));

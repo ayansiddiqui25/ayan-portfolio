@@ -1,7 +1,7 @@
 import { PenaltyScene } from "./PenaltyScene";
 import { PortfolioNav } from "./PortfolioNav";
 import { ActionLink } from "./ActionLink";
-import { portfolio, visibleProjects } from "../portfolio-content";
+import { portfolio, visibleProjects, certifications } from "../portfolio-content";
 import { ZoomImage } from "./ZoomImage";
 
 function ImagePlaceholder({ label, portrait = false }: { label: string; portrait?: boolean }) {
@@ -104,14 +104,22 @@ export function PenaltyPortfolio() {
         ))}</div>
       </section>
 
+      {certifications.length > 0 && <section className="portfolio-section certifications-section" id="certifications">
+        <header className="section-heading"><h2>Certifications</h2></header>
+        <ul className="certification-list">{certifications.map(certification => <li key={`${certification.issuer}-${certification.name}`}>
+          <div><h3>{certification.name}</h3><p>{certification.issuer}{certification.date && ` · ${certification.date}`}</p></div>
+          {certification.url && <ActionLink href={certification.url} variant="secondary" compact>View credential</ActionLink>}
+        </li>)}</ul>
+      </section>}
+
       <section className="portfolio-section about-section" id="about">
         <header className="section-heading"><h2>About me</h2></header>
         <div className="about-layout">
           <figure className="about-portrait"><ZoomImage src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width={1254} height={1254} caption="Ayan Siddiqui" /><figcaption>Ayan Siddiqui</figcaption></figure>
           <div className="about-copy"><p className="eyebrow">{profile.location}</p>
             <p>I’m a Mechatronics Engineering student at Toronto Metropolitan University interested in the intersection of mechanical systems, robotics, AI, and software.</p>
-            <p>I like working on problems where I can move between disciplines — designing a mechanical assembly in SolidWorks, debugging an autonomous robot, building an AI-backed application, or improving a real operating process.</p>
-            <p>Outside of engineering, I co-run an auto detailing business, follow Formula 1, basketball and football, and enjoy building products and experimenting with new technology.</p>
+            <p>I like working on problems where I can move between disciplines: designing a mechanical assembly in SolidWorks, debugging an autonomous robot, building an AI-backed application, or improving a real operating process.</p>
+            <p>Outside of work and school, I run two successful businesses, and as you may already have been able to tell, I'm a HUGE football (or soccer) fan. I've played football my whole life, and I'm a huge Arsenal fan.</p>
             <dl className="education"><div><dt>Education</dt><dd>{profile.school}</dd></div><div><dt>Degree</dt><dd>{profile.degree}</dd></div><div><dt>Expected graduation</dt><dd>{profile.graduation}</dd></div></dl>
           </div>
         </div>

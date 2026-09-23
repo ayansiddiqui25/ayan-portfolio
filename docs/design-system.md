@@ -93,6 +93,10 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   Contact), small solid accent marker, no repetitive slogan underneath. No tiny
   numbered section labels or oversized slogans competing with the section name.
 - Experience: a focused dated timeline without a decorative slogan card.
+- About: use 32px paragraph spacing and no em dashes, including education copy.
+  Location labels use Toronto, Ontario. Certifications belong between Skills and
+  About, with names, issuers, and only supplied dates/credential links. Keep the
+  section hidden while the certifications list is empty; never invent credentials.
 - Projects: separate Software & AI and Hardware & Mechanical sections, with
   anchor jump links. Category lives on each project in `app/portfolio-content.ts`.
   Qasam leads software; the self-parking car leads hardware. Robotics belongs in
