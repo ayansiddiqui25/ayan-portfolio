@@ -101,7 +101,11 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   and external links belong on case-study pages. Use real report drawings with
   contain sizing, captions, and full-resolution links. Separate personal contributions
   from team work and design targets from validated results. Case-study copy lives in
-  `app/project-details.ts`. Skills: two-column category panels.
+  `app/project-details.ts`. Skills: two-column category panels, gold 22px Oxanium
+  headings, and filled raised-green pills with 14px medium DM Sans text. Use
+  balanced 8px gaps and 8px/16px pill padding; long labels wrap on small screens.
+  Skill pills are static labels, not buttons: no arrows, trailing slashes, or hover
+  animations. Use plain category names without slash separators.
   Supplied personal content lives in `app/portfolio-content.ts`; only images and
   the résumé file are pending. Preserve approximate qualifiers on metrics.
 - Breakpoints: 1000px tablet/stacked hero, 650px single-column content/mobile nav.

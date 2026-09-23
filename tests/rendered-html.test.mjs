@@ -149,6 +149,17 @@ test("WFU has source images, careful attribution, and record-specific social met
   assert.match(wfu, /https:\/\/pixel-portfolio-fc\.sidayan25\.chatgpt\.site\/project-assets\/water-filtration\/system-diagram\.png/);
 });
 
+test("skill pills have clean labels without decorative slashes", async () => {
+  const html = await (await render()).text();
+  const skills = html.slice(html.indexOf('id="skills"'), html.indexOf('id="about"'));
+  const labels = [...skills.matchAll(/<(?:h3|li)>([^<]+)<\/(?:h3|li)>/g)].map(match => match[1]);
+  assert.ok(labels.length > 40);
+  for (const label of labels) assert.ok(!label.includes('/'), label);
+  const styles = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.doesNotMatch(styles, /\.skill-card li::after/);
+  assert.match(skills, /Mechanical Engineering/);
+});
+
 test("redirects legacy pages into the unified scrolling portfolio", async () => {
   for (const [path, anchor] of routes) {
     const response = await render(path);

@@ -331,7 +331,7 @@ export const portfolio = {
   ],
   "skillGroups": [
     {
-      "label": "Mechanical / Engineering",
+      "label": "Mechanical Engineering",
       "skills": [
         "SolidWorks",
         "3D CAD Modelling",
@@ -341,7 +341,7 @@ export const portfolio = {
         "Tolerances",
         "Mechanical Packaging",
         "BOMs",
-        "QA/QC",
+        "Quality Assurance & Control",
         "Manufacturing",
         "Design for Manufacturing",
         "System Testing",
@@ -363,7 +363,7 @@ export const portfolio = {
       ]
     },
     {
-      "label": "Web / Software",
+      "label": "Web & Software",
       "skills": [
         "React",
         "Next.js",
@@ -382,7 +382,7 @@ export const portfolio = {
       ]
     },
     {
-      "label": "AI / Data",
+      "label": "AI & Data",
       "skills": [
         "PyTorch",
         "Computer Vision",
