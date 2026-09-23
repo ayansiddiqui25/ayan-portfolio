@@ -65,7 +65,7 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.match(html, /hero-copy__role/);
   assert.doesNotMatch(html, /Portrait \/ Photo to come|05 \/ About/);
   assert.match(html, /App screenshots to come/);
-  for (const name of ["RecAbility", "Rusteze Auto Detailing", "SheHacksPurple", "KKC Consulting", "SentinelAI", "U-Net Semantic Segmentation", "Autonomous Mobile Robot", "Self-Parking Car", "Financial Transaction Dashboard", "Water Filtration Unit", "18650 Battery Module Enclosure", "TMU Formula Racing"]) assert.ok(html.includes(name), name);
+  for (const name of ["RecAbility", "Rusteze Auto Detailing", "SheHacksPurple", "KKC Consulting", "SentinelAI", "U-Net Semantic Segmentation", "Autonomous Mobile Robot", "Self-Parking Car", "Water Filtration Unit"]) assert.ok(html.includes(name), name);
   assert.match(html, /Toronto Metropolitan University/);
   assert.match(html, /April 2028/);
   assert.match(html, /2027 co-op/);
@@ -88,8 +88,8 @@ test("separates software and hardware projects and shows the team-led car galler
   assert.ok(softwareStart > 0 && hardwareStart > softwareStart);
   const software = html.slice(softwareStart, hardwareStart);
   const hardware = html.slice(hardwareStart, html.indexOf('id="skills"'));
-  for (const id of ["qasam", "sentinel-ai", "unet", "financial-dashboard"]) assert.ok(software.includes(`id="project-${id}"`));
-  for (const id of ["self-parking-car", "formula-racing", "autonomous-robot", "water-filtration", "battery-enclosure"]) {
+  for (const id of ["qasam", "sentinel-ai", "unet"]) assert.ok(software.includes(`id="project-${id}"`));
+  for (const id of ["self-parking-car", "autonomous-robot", "water-filtration"]) {
     assert.ok(hardware.includes(`id="project-${id}"`));
     assert.ok(!software.includes(`id="project-${id}"`));
   }
@@ -122,7 +122,7 @@ test("uses the shared retro design system and distinct CTA variants", async () =
 
 test("every project opens a complete case study and invalid projects return 404", async () => {
   const home = await (await render()).text();
-  for (const slug of ['qasam', 'formula-racing', 'sentinel-ai', 'unet', 'autonomous-robot', 'self-parking-car', 'financial-dashboard', 'water-filtration', 'battery-enclosure']) {
+  for (const slug of ['qasam', 'sentinel-ai', 'unet', 'autonomous-robot', 'self-parking-car', 'water-filtration']) {
     assert.ok(home.includes(`href="/projects/${slug}"`), slug);
     const response = await render(`/projects/${slug}`);
     assert.equal(response.status, 200, slug);
@@ -147,6 +147,27 @@ test("WFU has source images, careful attribution, and record-specific social met
     assert.doesNotMatch(html, /\/og\.png/);
   }
   assert.match(wfu, /https:\/\/pixel-portfolio-fc\.sidayan25\.chatgpt\.site\/project-assets\/water-filtration\/system-diagram\.png/);
+});
+
+test("temporarily removed projects are absent from cards, related links and direct routes", async () => {
+  for (const path of ['/', '/projects/qasam', '/projects/self-parking-car']) {
+    const html = await (await render(path)).text();
+    assert.doesNotMatch(html, /financial-dashboard|formula-racing|battery-enclosure/);
+  }
+  for (const slug of ['financial-dashboard', 'formula-racing', 'battery-enclosure']) {
+    assert.equal((await render(`/projects/${slug}`)).status, 404);
+  }
+});
+
+test("pictures use in-page dialog buttons instead of image links", async () => {
+  for (const path of ['/', '/projects/self-parking-car', '/projects/water-filtration']) {
+    const html = await (await render(path)).text();
+    assert.match(html, /class="image-zoom-trigger"/);
+    assert.match(html, /aria-haspopup="dialog"/);
+    assert.match(html, /<dialog[^>]*class="image-lightbox"/);
+    assert.doesNotMatch(html, /href="\/project-assets\/|target="_blank"/);
+    assert.doesNotMatch(html, /<dialog[^>]*\sopen(?:[\s=>])/);
+  }
 });
 
 test("skill pills have clean labels without decorative slashes", async () => {

@@ -1,7 +1,8 @@
 import { PenaltyScene } from "./PenaltyScene";
 import { PortfolioNav } from "./PortfolioNav";
 import { ActionLink } from "./ActionLink";
-import { portfolio } from "../portfolio-content";
+import { portfolio, visibleProjects } from "../portfolio-content";
+import { ZoomImage } from "./ZoomImage";
 
 function ImagePlaceholder({ label, portrait = false }: { label: string; portrait?: boolean }) {
   return <div className={`image-placeholder ${portrait ? "image-placeholder--portrait" : ""}`} role="img" aria-label={label}>
@@ -14,7 +15,8 @@ function Tags({ items }: { items: string[] }) {
   return <ul className="tags">{items.map(item => <li key={item}>{item}</li>)}</ul>;
 }
 export function PenaltyPortfolio() {
-  const { profile, experiences, projects, skillGroups } = portfolio;
+  const { profile, experiences, skillGroups } = portfolio;
+  const projects = visibleProjects;
   return (
     <main className="scroll-portfolio">
       <PortfolioNav />
@@ -40,9 +42,9 @@ export function PenaltyPortfolio() {
           <span className="text-link">Explore the project <span aria-hidden="true">↗</span></span>
           <ImagePlaceholder label="Qasam / App screenshots to come" />
         </a>
-        <a className="overview-card overview-card--building" href="/projects/formula-racing">
-          <p className="eyebrow">Currently building</p><h2>TMU Formula Racing</h2>
-          <p>Designing race-ready hardware around real vehicle constraints: a removable electronics enclosure for the headrest area.</p>
+        <a className="overview-card overview-card--building" href="/projects/self-parking-car">
+          <p className="eyebrow">Mechanical design</p><h2>Self-Parking Car</h2>
+          <p>Led a team to design and manufacture an elastic-powered car with a geared drivetrain and pivoting steering module.</p>
         </a>
         <a className="overview-card" href="#experience">
           <h2>Experience</h2>
@@ -86,10 +88,10 @@ export function PenaltyPortfolio() {
           <section className="project-category" id={category + "-projects"} key={category} aria-labelledby={category + "-title"}>
             <header className="project-category__heading"><h3 id={category + "-title"}>{category === "software" ? "Software & AI" : "Hardware & Mechanical"}</h3></header>
             <div className="upcoming-projects">{projects.filter(project => project.category === category).sort((a, b) => Number(b.id === "self-parking-car") - Number(a.id === "self-parking-car")).map(project => (
-              <a className="project-summary" href={`/projects/${project.id}`} id={`project-${project.id}`} key={project.id}>
-                {project.gallery ? <div className="project-summary__image"><img src={project.gallery[0].src} alt={project.gallery[0].alt} width={project.gallery[0].width} height={project.gallery[0].height} loading="lazy" /></div> : <ImagePlaceholder label={project.image} />}
-                <div className="project-summary__body"><h4>{project.name}</h4><p>{project.description}</p><span className="text-link">View project <span aria-hidden="true">↗</span></span></div>
-              </a>
+              <article className="project-summary" id={`project-${project.id}`} key={project.id}>
+                {project.gallery ? <div className="project-summary__image"><ZoomImage {...project.gallery[0]} /></div> : <a href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><ImagePlaceholder label={project.image} /></a>}
+                <a href={`/projects/${project.id}`} className="project-summary__body"><h4>{project.name}</h4><p>{project.description}</p><span className="text-link">View project <span aria-hidden="true">↗</span></span></a>
+              </article>
             ))}</div>
           </section>
         ))}
@@ -105,7 +107,7 @@ export function PenaltyPortfolio() {
       <section className="portfolio-section about-section" id="about">
         <header className="section-heading"><h2>About me</h2></header>
         <div className="about-layout">
-          <figure className="about-portrait"><img src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width="1254" height="1254" loading="lazy" /><figcaption>Ayan Siddiqui</figcaption></figure>
+          <figure className="about-portrait"><ZoomImage src="/game-assets/ayan-retro-portrait.png" alt="Retro pixel-art portrait of Ayan Siddiqui wearing a blue number 10 football jersey" width={1254} height={1254} caption="Ayan Siddiqui" /><figcaption>Ayan Siddiqui</figcaption></figure>
           <div className="about-copy"><p className="eyebrow">{profile.location}</p>
             <p>I’m a Mechatronics Engineering student at Toronto Metropolitan University interested in the intersection of mechanical systems, robotics, AI, and software.</p>
             <p>I like working on problems where I can move between disciplines — designing a mechanical assembly in SolidWorks, debugging an autonomous robot, building an AI-backed application, or improving a real operating process.</p>

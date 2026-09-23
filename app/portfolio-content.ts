@@ -418,3 +418,7 @@ export const portfolio = {
     }
   ]
 };
+
+// Temporarily hidden, not deleted. Remove an ID here to restore its case study.
+const hiddenProjectIds = new Set(["financial-dashboard", "formula-racing", "battery-enclosure"]);
+export const visibleProjects = portfolio.projects.filter(project => !hiddenProjectIds.has(project.id));
