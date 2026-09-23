@@ -18,7 +18,7 @@ export const portfolio = {
     {
       "company": "RecAbility",
       "role": "Engineering Design Intern",
-      "dates": "Feb 2026 – Present",
+      "dates": "Feb 2026 – Sep 2026",
       "location": "Toronto, Ontario",
       "description": "Engineering design work on a powerchair football mechanism.",
       "points": [
@@ -41,7 +41,7 @@ export const portfolio = {
       "company": "Rusteze Auto Detailing",
       "role": "Co-Owner",
       "dates": "May 2025 – Present",
-      "location": "Toronto, Ontario",
+      "location": "Milton, Ontario",
       "description": "Co-founded and operate an automotive detailing business serving 150+ customers.",
       "points": [
         "Improved service turnaround time by approximately 25%.",
@@ -423,5 +423,10 @@ export const portfolio = {
 const hiddenProjectIds = new Set(["financial-dashboard", "formula-racing", "battery-enclosure"]);
 export const visibleProjects = portfolio.projects.filter(project => !hiddenProjectIds.has(project.id));
 
-// Awaiting Ayan's certification names and issuers. Do not invent credentials.
-export const certifications: { name: string; issuer: string; date?: string; url?: string }[] = [];
+// Supplied by Ayan. Exam preparation is not an earned certification.
+export const certifications: { name: string; issuer: string; date?: string; url?: string; status?: string }[] = [
+  { name: "Claude in Amazon Bedrock", issuer: "Anthropic" },
+  { name: "AI Skills Fest", issuer: "Microsoft" },
+  { name: "AI Agents: Intensive Vibe Coding Capstone Project", issuer: "Google x Kaggle" },
+  { name: "CSWA", issuer: "Exam preparation", status: "In progress" }
+];

@@ -177,9 +177,21 @@ test("About uses supplied personal copy, Toronto locations, and no em dashes", a
   assert.match(about, /HUGE football \(or soccer\) fan/);
   assert.match(about, /huge Arsenal fan/);
   assert.doesNotMatch(about, /—|&mdash;|&#8212;/);
-  assert.doesNotMatch(html, /Milton/i);
+  assert.doesNotMatch(about, /Milton/i);
   assert.match(about, /Toronto, Ontario, Canada/);
-  assert.doesNotMatch(html, /id="certifications"/); // No invented or empty credentials.
+  assert.match(html, /id="certifications"/);
+});
+
+test("experience updates and supplied certifications are rendered accurately", async () => {
+  const html = await (await render()).text();
+  const entries = [...html.matchAll(/<article class="timeline-entry">([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  assert.match(entries.find(entry => entry.includes('RecAbility')), /Feb 2026 – Sep 2026/);
+  assert.match(entries.find(entry => entry.includes('Rusteze Auto Detailing')), /Milton, Ontario/);
+  const section = html.slice(html.indexOf('id="certifications"'), html.indexOf('id="about"'));
+  for (const text of ['Claude in Amazon Bedrock', 'Anthropic', 'AI Skills Fest', 'Microsoft', 'AI Agents: Intensive Vibe Coding Capstone Project', 'Google x Kaggle', 'CSWA', 'Exam preparation', 'In progress']) assert.ok(section.includes(text), text);
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.timeline-entry::before[^}]*width: 3px; background: var\(--paper\)/);
+  assert.match(css, /\.timeline-body::before[^}]*width: 15px; height: 15px; background: var\(--paper\)/);
 });
 
 test("skill pills have clean labels without decorative slashes", async () => {

@@ -92,11 +92,15 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Section headings: prominent section name (Experience, Projects, Skills, About me,
   Contact), small solid accent marker, no repetitive slogan underneath. No tiny
   numbered section labels or oversized slogans competing with the section name.
-- Experience: a focused dated timeline without a decorative slogan card.
+- Experience: a focused dated timeline with a 3px cream-white pitch line and solid
+  15px penalty-spot markers. Keep the line continuous through dates on mobile.
+  No decorative slogan card or gold ring markers.
 - About: use 32px paragraph spacing and no em dashes, including education copy.
-  Location labels use Toronto, Ontario. Certifications belong between Skills and
+  Personal location is Toronto, Ontario; Rusteze is in Milton, Ontario.
+  Certifications belong between Skills and
   About, with names, issuers, and only supplied dates/credential links. Keep the
   section hidden while the certifications list is empty; never invent credentials.
+  Label CSWA as exam preparation, in progress, not an earned certification.
 - Projects: separate Software & AI and Hardware & Mechanical sections, with
   anchor jump links. Category lives on each project in `app/portfolio-content.ts`.
   Qasam leads software; the self-parking car leads hardware. Robotics belongs in

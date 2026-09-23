@@ -108,6 +108,7 @@ export function PenaltyPortfolio() {
         <header className="section-heading"><h2>Certifications</h2></header>
         <ul className="certification-list">{certifications.map(certification => <li key={`${certification.issuer}-${certification.name}`}>
           <div><h3>{certification.name}</h3><p>{certification.issuer}{certification.date && ` · ${certification.date}`}</p></div>
+          {certification.status && <span className="certification-status">{certification.status}</span>}
           {certification.url && <ActionLink href={certification.url} variant="secondary" compact>View credential</ActionLink>}
         </li>)}</ul>
       </section>}
