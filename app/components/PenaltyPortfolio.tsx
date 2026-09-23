@@ -89,7 +89,7 @@ export function PenaltyPortfolio() {
             <header className="project-category__heading"><h3 id={category + "-title"}>{category === "software" ? "Software & AI" : "Hardware & Mechanical"}</h3></header>
             <div className="upcoming-projects">{projects.filter(project => project.category === category).sort((a, b) => Number(b.id === "self-parking-car") - Number(a.id === "self-parking-car")).map(project => (
               <article className="project-summary" id={`project-${project.id}`} key={project.id}>
-                {project.gallery ? <div className="project-summary__image"><ZoomImage {...project.gallery[0]} /></div> : <a href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><ImagePlaceholder label={project.image} /></a>}
+                {project.gallery ? <a className="project-summary__image" href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><img src={project.gallery[0].src} alt={project.gallery[0].alt} width={project.gallery[0].width} height={project.gallery[0].height} loading="lazy" /></a> : <a href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><ImagePlaceholder label={project.image} /></a>}
                 <a href={`/projects/${project.id}`} className="project-summary__body"><h4>{project.name}</h4><p>{project.description}</p><span className="text-link">View project <span aria-hidden="true">↗</span></span></a>
               </article>
             ))}</div>

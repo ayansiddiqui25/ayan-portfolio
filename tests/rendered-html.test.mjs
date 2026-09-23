@@ -170,6 +170,19 @@ test("pictures use in-page dialog buttons instead of image links", async () => {
   }
 });
 
+test("project preview pictures navigate to details without a lightbox", async () => {
+  const html = await (await render()).text();
+  for (const slug of ['self-parking-car', 'water-filtration']) {
+    const start = html.indexOf(`id="project-${slug}"`);
+    const card = html.slice(start, html.indexOf('</article>', start));
+    assert.ok(card.includes(`class="project-summary__image" href="/projects/${slug}"`));
+    assert.doesNotMatch(card, /image-zoom-trigger|<dialog/);
+  }
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /html \{[^}]*scroll-behavior: auto/);
+  assert.doesNotMatch(css, /scroll-behavior: smooth/);
+});
+
 test("About uses supplied personal copy, Toronto locations, and no em dashes", async () => {
   const html = await (await render()).text();
   const about = html.slice(html.indexOf('id="about"'), html.indexOf('id="contact"'));

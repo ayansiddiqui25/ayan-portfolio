@@ -104,10 +104,10 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Projects: separate Software & AI and Hardware & Mechanical sections, with
   anchor jump links. Category lives on each project in `app/portfolio-content.ts`.
   Qasam leads software; the self-parking car leads hardware. Robotics belongs in
-  hardware. Card titles and text open `/projects/[slug]` with Problem, Solution, My role,
+  hardware. Card preview images, titles, and text open `/projects/[slug]` with Problem, Solution, My role,
   and Outcome. Keep homepage cards concise; galleries, detailed results, credits,
   and external links belong on case-study pages. Use real report drawings with
-  contain sizing and captions. `ZoomImage` opens real project images and the About
+  contain sizing and captions. `ZoomImage` opens detail-page project images and the About
   portrait in an in-page native dialog, never a separate tab. Keep image buttons
   separate from project links. Support Escape, backdrop click, Close, trapped focus,
   restored trigger focus, and locked background scrolling. Temporarily hidden projects
@@ -123,6 +123,9 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   the résumé file are pending. Preserve approximate qualifiers on metrics.
 - Breakpoints: 1000px tablet/stacked hero, 650px single-column content/mobile nav.
 - Reuse pitch-line dividers, shirt numbers, and frame details sparingly.
+- Keep root scroll behavior instant so browser Back restores the previous position
+  without animating from the hero. `ProjectBackLink` uses native Back for direct
+  homepage arrivals and a project-anchor fallback for direct/shared detail URLs.
 
 ## Assets
 

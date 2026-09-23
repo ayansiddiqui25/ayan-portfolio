@@ -4,6 +4,7 @@ import { visibleProjects } from "../../portfolio-content";
 import { ZoomImage } from "../../components/ZoomImage";
 import { projectDetails } from "../../project-details";
 import { ActionLink } from "../../components/ActionLink";
+import { ProjectBackLink } from "../../components/ProjectBackLink";
 
 type Props = { params: Promise<{ slug: string }> };
 const origin = "https://pixel-portfolio-fc.sidayan25.chatgpt.site";
@@ -27,7 +28,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project || !story) notFound();
   const peers = visibleProjects.filter(item => item.category === project.category && item.id !== slug);
   return <main className="case-study page-width">
-    <nav className="case-nav" aria-label="Project navigation"><a href="/">Ayan Siddiqui</a><a href={`/#project-${slug}`}>← All projects</a></nav>
+    <nav className="case-nav" aria-label="Project navigation"><a href="/">Ayan Siddiqui</a><ProjectBackLink slug={slug}>← All projects</ProjectBackLink></nav>
     <header className="case-header"><p className="eyebrow">{project.type}</p><h1>{project.name}</h1><p>{project.description}</p>
       <ul className="tags">{project.tech.map(item => <li key={item}>{item}</li>)}</ul>
       {project.link && <ActionLink href={project.link}>{project.linkLabel}</ActionLink>}
@@ -42,6 +43,6 @@ export default async function ProjectPage({ params }: Props) {
       <ZoomImage {...picture} /><figcaption>{picture.caption}</figcaption>
     </figure>)}</div><p className="case-credit">{slug === "self-parking-car" ? "Team drawings · MEC 322 · Winter 2026" : "System diagram supplied by Ayan · Concept sketch from MEC 325, Milestone 2, Team 0901"}</p></section>}
     {slug === "self-parking-car" && <section className="case-notes"><h2>Engineering decisions</h2><ul className="detail-list">{project.points.slice(2).map(point => <li key={point}>{point}</li>)}</ul></section>}
-    <footer className="case-footer"><h2>More {project.category === "software" ? "software" : "hardware"} projects</h2><div>{peers.map(item => <a key={item.id} href={`/projects/${item.id}`}>{item.name}<span aria-hidden="true">↗</span></a>)}</div><ActionLink href="/#projects" variant="secondary">All projects</ActionLink></footer>
+    <footer className="case-footer"><h2>More {project.category === "software" ? "software" : "hardware"} projects</h2><div>{peers.map(item => <a key={item.id} href={`/projects/${item.id}`}>{item.name}<span aria-hidden="true">↗</span></a>)}</div><ProjectBackLink slug={slug} className="action action--secondary">All projects <span aria-hidden="true">←</span></ProjectBackLink></footer>
   </main>;
 }
