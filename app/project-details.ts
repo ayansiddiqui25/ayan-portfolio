@@ -1,5 +1,5 @@
 // Case-study copy grounded in Ayan's supplied information and project reports.
-export type CaseStudy = { problem: string; solution: string; role: string; outcome: string };
+export type CaseStudy = { problem: string; solution: string; role: string; outcome: string; considerations?: string[] };
 export const projectDetails: Record<string, CaseStudy> = {
   qasam: {
     problem: "Phone distractions can make it difficult to stay consistent with the five daily prayers. The product needed to support both personal habits and accountability without exposing private user data.",
@@ -8,10 +8,11 @@ export const projectDetails: Record<string, CaseStudy> = {
     outcome: "Published on the Apple App Store. The released product brings prayer tracking and distraction management into one experience."
   },
   "formula-racing": {
-    problem: "Electronics around the Formula SAE headrest need protection within a constrained vehicle envelope, without making routine maintenance difficult.",
-    solution: "A removable enclosure designed around existing geometry, mounting interfaces, and component clearances. Fastener placement, vibration resistance, and repeated access inform the packaging decisions.",
-    role: "I am designing the enclosure in SolidWorks, balancing mechanical packaging, manufacturability, and service access.",
-    outcome: "Design work is ongoing. The current focus is packaging and mounting; race testing and final manufacturing results are not yet available."
+    problem: "Electrical components around the Formula SAE vehicle’s headrest area need protection during operation without slowing down maintenance, inspection, or troubleshooting. The available space is constrained by existing vehicle geometry, so the cover must fit around nearby components rather than be designed in isolation.",
+    solution: "A removable enclosure developed in SolidWorks around packaging boundaries, component clearances, mounting locations, and fastener access. I considered mounting and fastening approaches that balance rigidity and reliable retention with straightforward removal for the electrical team. Installation, servicing, manufacturability, and interference with nearby vehicle systems informed the design throughout.",
+    role: "As part of TMU Formula Racing, I worked on the enclosure design and mechanical packaging. I evaluated how the cover could be installed, fastened, removed, and serviced within the available space, considering vibration and dynamic vehicle loads alongside access to electrical hardware.",
+    outcome: "The design work strengthened my experience in vehicle packaging, mechanical-electrical integration, clearances, fastening, and design for maintenance. It involved trade-offs between reliability, manufacturability, and serviceability. Vibration and dynamic loads were design considerations, not validated test results.",
+    considerations: ["Tight vehicle packaging and clearance from surrounding geometry", "Protection of electrical components", "Secure mounting, fastening, and fastener access", "Vibration and dynamic vehicle loads", "Quick removal for maintenance and troubleshooting", "Accessibility to electrical hardware", "Manufacturability and assembly", "Mechanical-electrical system integration"]
   },
   "sentinel-ai": {
     problem: "Investigating a software outage requires bringing together incident evidence, severity, a timeline, and possible causes before deciding what to do next.",
@@ -50,9 +51,10 @@ export const projectDetails: Record<string, CaseStudy> = {
     outcome: "Produced a documented concept study with usage scenarios and human-factors analysis. My supplied project summary reports approximately 25% better reach/maintenance accessibility and a 50% reduction in concepts through weighted trade-offs. These are design-evaluation figures, not evidence of tested water quality. Flow, cost, durability, and potability still require physical validation."
   },
   "battery-enclosure": {
-    problem: "A 3×3 array of 18650 cells needs secure retention, assembly clearance, and maintenance access within a manufacturable enclosure.",
-    solution: "A SolidWorks enclosure with ribbed walls, fasteners, and a removable lid. The design considers cell tolerances, vibration resistance, passive airflow, and thermal management.",
-    role: "I designed the enclosure and accounted for cell dimensions, retention, clearances, and assembly requirements.",
-    outcome: "Completed an enclosure design for a nine-cell array, incorporating cell retention, a removable lid, and assembly clearance."
+    problem: "A 3×3 array of 18650 cylindrical battery cells needs secure packaging that maintains consistent spacing and prevents unwanted movement while allowing practical assembly, airflow, and structural support. The enclosure must provide room for fastening without adding unnecessary material or completely restricting heat dissipation.",
+    solution: "A mechanical enclosure and cell-retention system developed in SolidWorks. I iterated wall thickness, retention geometry, ribs, clearances, and mounting features to balance structural rigidity with compact packaging, manufacturability, and ease of assembly. Airflow and basic thermal pathways around the cells were considered alongside the mechanical interfaces.",
+    role: "I designed the enclosure and retention system, working through cell dimensions, tolerances, spacing, fastening, and assembly fit. I adjusted the CAD geometry to account for how individual components interact within the battery system and prepared it with future structural validation in mind.",
+    outcome: "Produced an enclosure design for a nine-cell array and strengthened my understanding of battery packaging, mechanical interfaces, tolerancing, thermal considerations, and design around physical constraints. Geometry was prepared for future SolidWorks Simulation stress analysis; that analysis has not yet been performed. Thermal performance and vibration resistance remain design considerations rather than validated results.",
+    considerations: ["Packaging a 3×3 array of 18650 cylindrical cells", "Cell retention and consistent spacing", "Structural ribs and wall thickness", "Mechanical clearances and assembly fit", "Fastening and mounting strategy", "Airflow and basic thermal pathways", "Vibration and movement of cells within the enclosure", "Manufacturability and ease of assembly", "Preparation for future SolidWorks Simulation analysis"]
   }
 };

@@ -106,7 +106,7 @@ test("separates software and hardware projects and shows the team-led car galler
   const software = html.slice(softwareStart, hardwareStart);
   const hardware = html.slice(hardwareStart, html.indexOf('id="skills"'));
   for (const id of ["qasam", "sentinel-ai", "unet"]) assert.ok(software.includes(`id="project-${id}"`));
-  for (const id of ["self-parking-car", "autonomous-robot", "water-filtration"]) {
+  for (const id of ["self-parking-car", "autonomous-robot", "water-filtration", "formula-racing", "battery-enclosure"]) {
     assert.ok(hardware.includes(`id="project-${id}"`));
     assert.ok(!software.includes(`id="project-${id}"`));
   }
@@ -139,7 +139,7 @@ test("uses the shared retro design system and distinct CTA variants", async () =
 
 test("every project opens a complete case study and invalid projects return 404", async () => {
   const home = await (await render()).text();
-  for (const slug of ['qasam', 'sentinel-ai', 'unet', 'autonomous-robot', 'self-parking-car', 'water-filtration']) {
+  for (const slug of ['qasam', 'sentinel-ai', 'unet', 'autonomous-robot', 'self-parking-car', 'water-filtration', 'formula-racing', 'battery-enclosure']) {
     assert.ok(home.includes(`href="/projects/${slug}"`), slug);
     const response = await render(`/projects/${slug}`);
     assert.equal(response.status, 200, slug);
@@ -169,11 +169,29 @@ test("WFU has source images, careful attribution, and record-specific social met
 test("temporarily removed projects are absent from cards, related links and direct routes", async () => {
   for (const path of ['/', '/projects/qasam', '/projects/self-parking-car']) {
     const html = await (await render(path)).text();
-    assert.doesNotMatch(html, /financial-dashboard|formula-racing|battery-enclosure/);
+    assert.doesNotMatch(html, /financial-dashboard/);
   }
-  for (const slug of ['financial-dashboard', 'formula-racing', 'battery-enclosure']) {
+  for (const slug of ['financial-dashboard']) {
     assert.equal((await render(`/projects/${slug}`)).status, 404);
   }
+});
+
+test("restored enclosures show supplied engineering details without claiming completed validation", async () => {
+  for (const [slug, title] of [['formula-racing', 'Formula SAE Electronics Enclosure'], ['battery-enclosure', '18650 Battery Cell Pack Enclosure']]) {
+    const html = await (await render(`/projects/${slug}`)).text();
+    assert.ok(html.includes(`<title>${title} | Ayan Siddiqui FC</title>`));
+    assert.ok(html.includes(`property="og:title" content="${title}"`));
+    assert.ok(html.includes(`name="twitter:title" content="${title}"`));
+    assert.match(html, /Engineering considerations/);
+    assert.match(html, /CAD images to come/);
+    assert.doesNotMatch(html, /property="og:image"|name="twitter:image"|image-zoom-trigger/);
+  }
+  const battery = await (await render('/projects/battery-enclosure')).text();
+  assert.match(battery, /analysis has not yet been performed/);
+  assert.match(battery, /3×3/);
+  const formula = await (await render('/projects/formula-racing')).text();
+  assert.match(formula, /As part of TMU Formula Racing/);
+  assert.match(formula, /not validated test results/);
 });
 
 test("pictures use in-page dialog buttons instead of image links", async () => {

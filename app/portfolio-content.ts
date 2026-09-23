@@ -124,10 +124,10 @@ export const portfolio = {
     },
     {
       "id": "formula-racing",
-      "name": "TMU Formula Racing — Electronics Enclosure",
+      "name": "Formula SAE Electronics Enclosure",
       "type": "Mechanical / Formula SAE",
       "image": "CAD render to come",
-      "description": "Designing a removable protective enclosure for electronics around the Formula SAE vehicle headrest area.",
+      "description": "A removable electronics enclosure for TMU Formula Racing, balancing tight headrest-area packaging with protection and maintenance access.",
       "points": [
         "Work within the existing vehicle packaging envelope and geometry, checking component clearances and mounting interfaces.",
         "Plan fastener placement and vibration resistance for dynamic racing loads.",
@@ -138,7 +138,7 @@ export const portfolio = {
         "Mechanical Packaging",
         "Design for Manufacturing"
       ],
-      "result": "Currently building",
+      "result": "Vehicle packaging and serviceability",
       "link": "",
       "linkLabel": "",
       "category": "hardware"
@@ -310,18 +310,21 @@ export const portfolio = {
     },
     {
       "id": "battery-enclosure",
-      "name": "18650 Battery Module Enclosure",
+      "name": "18650 Battery Cell Pack Enclosure",
       "type": "Mechanical Design",
       "image": "Enclosure render to come",
-      "description": "Designed an enclosure for a 3×3 array of 18650 cylindrical battery cells.",
+      "description": "A compact enclosure and cell-retention system for a 3×3 array of 18650 cells, designed around assembly, structural support, and airflow.",
       "points": [
         "Accounted for cell dimensions, tolerances, retention, and assembly clearance.",
-        "Designed ribbed walls, fastening, and a removable lid.",
-        "Considered vibration resistance, passive airflow, thermal management, and manufacturability."
+        "Iterated wall thickness, retention geometry, ribs, clearances, and mounting features.",
+        "Considered cell movement, airflow, thermal pathways, and manufacturability.",
+        "Prepared geometry for future SolidWorks Simulation stress analysis; analysis has not yet been performed."
       ],
       "tech": [
         "SolidWorks",
-        "Mechanical Design"
+        "CAD Modelling",
+        "Assembly Design",
+        "Battery Packaging"
       ],
       "result": "Enclosure for a 3×3 cell array",
       "link": "",
@@ -420,7 +423,7 @@ export const portfolio = {
 };
 
 // Temporarily hidden, not deleted. Remove an ID here to restore its case study.
-const hiddenProjectIds = new Set(["financial-dashboard", "formula-racing", "battery-enclosure"]);
+const hiddenProjectIds = new Set(["financial-dashboard"]);
 export const visibleProjects = portfolio.projects.filter(project => !hiddenProjectIds.has(project.id));
 
 // Supplied by Ayan. Exam preparation is not an earned certification.
