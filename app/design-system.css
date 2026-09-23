@@ -71,6 +71,7 @@
 .action--primary { --action-bg: var(--accent); --action-ink: var(--night); --action-border: var(--accent); --action-edge: var(--accent-edge); }
 .action--compact { min-height: 44px; padding: var(--space-3) var(--space-4); font-size: 14px; gap: var(--space-4); }
 .action__icon { font: 400 21px/1 var(--font-body); flex-shrink: 0; }
+.action--pill { border-radius: var(--radius-pill); }
 @media (hover: hover) {
   .action:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--action-edge); background: var(--surface-raised); }
   .action--primary:hover { background: var(--accent-hover); }

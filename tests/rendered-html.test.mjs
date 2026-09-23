@@ -194,6 +194,16 @@ test("restored enclosures show supplied engineering details without claiming com
   assert.match(formula, /not validated test results/);
 });
 
+test("SentinelAI demo pill links to the supplied video on its card and case study", async () => {
+  const home = await (await render()).text();
+  const start = home.indexOf('id="project-sentinel-ai"');
+  const card = home.slice(start, home.indexOf('</article>', start));
+  assert.match(card, /href="\/projects\/sentinel-ai"/);
+  for (const html of [card, await (await render('/projects/sentinel-ai')).text()]) {
+    assert.match(html, /<a[^>]*href="https:\/\/youtu\.be\/CWl1aig73W8"[^>]*class="action action--secondary action--compact action--pill"[^>]*><span>Watch demo<\/span>/);
+  }
+});
+
 test("pictures use in-page dialog buttons instead of image links", async () => {
   for (const path of ['/', '/projects/self-parking-car', '/projects/water-filtration']) {
     const html = await (await render(path)).text();

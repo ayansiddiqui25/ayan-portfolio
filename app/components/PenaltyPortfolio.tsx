@@ -93,6 +93,7 @@ export function PenaltyPortfolio() {
               <article className="project-summary" id={`project-${project.id}`} key={project.id}>
                 {project.gallery ? <a className="project-summary__image" href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><img src={project.gallery[0].src} alt={project.gallery[0].alt} width={project.gallery[0].width} height={project.gallery[0].height} loading="lazy" /></a> : <a href={`/projects/${project.id}`} aria-label={`View ${project.name}`}><ImagePlaceholder label={project.image} /></a>}
                 <a href={`/projects/${project.id}`} className="project-summary__body"><h4>{project.name}</h4><p>{project.description}</p><span className="text-link">View project <span aria-hidden="true">↗</span></span></a>
+                {project.id === "sentinel-ai" && <div className="project-summary__actions"><ActionLink href={project.link} variant="secondary" compact className="action--pill" aria-label="Watch SentinelAI demo on YouTube">Watch demo</ActionLink></div>}
               </article>
             ))}</div>
           </section>

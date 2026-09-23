@@ -31,7 +31,7 @@ export default async function ProjectPage({ params }: Props) {
     <nav className="case-nav" aria-label="Project navigation"><a href="/">Ayan Siddiqui</a><ProjectBackLink slug={slug}>← All projects</ProjectBackLink></nav>
     <header className="case-header"><p className="eyebrow">{project.type}</p><h1>{project.name}</h1><p>{project.description}</p>
       <ul className="tags">{project.tech.map(item => <li key={item}>{item}</li>)}</ul>
-      {project.link && <ActionLink href={project.link}>{project.linkLabel}</ActionLink>}
+      {project.link && <ActionLink href={project.link} variant={slug === "sentinel-ai" ? "secondary" : "primary"} compact={slug === "sentinel-ai"} className={slug === "sentinel-ai" ? "action--pill" : undefined}>{project.linkLabel}</ActionLink>}
     </header>
     <div className="case-layout">
       <nav className="case-index" aria-label="Case study sections">{["Problem", "Solution", "My role", "Outcome"].map(label => <a key={label} href={`#${label.toLowerCase().replace(" ", "-")}`}>{label}</a>)}</nav>

@@ -370,6 +370,7 @@ body { font-size: 17px; line-height: 1.65; }
 .project-summary h4 { font: 600 clamp(24px, 2.3vw, 32px)/1.3 var(--font-display); margin: 0 0 16px; overflow-wrap: anywhere; }
 .project-summary p { color: var(--muted); margin: 0 0 24px; line-height: 1.7; }
 .project-summary .text-link { margin-top: auto; color: var(--arcade-blue); }
+.project-summary__actions { padding: 0 clamp(24px, 3vw, 32px) 32px; }
 .case-study { padding-bottom: 80px; }
 .case-nav { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .case-nav a { padding: 10px 0; }

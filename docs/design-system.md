@@ -72,6 +72,10 @@ Never rely on color alone to communicate state. Target WCAG AA text contrast.
 - Disabled actions must be semantically disabled and must not navigate. Do not
   add fake Resume, contact, or project buttons before their destinations exist.
 - Do not nest buttons/anchors inside a whole-card anchor.
+- Demo links may use `ActionLink` with `variant="secondary"`, `compact`, and
+  `action--pill`: a blue outlined pill with the shared raised edge and focus states.
+  SentinelAI exposes this action on its project card and detail page. Keep the
+  card demo action separate from the link to the case study.
 
 Example: `<ActionLink href="#projects">See my work</ActionLink>`;
 secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`.
@@ -87,7 +91,7 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Base spacing scale: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
 - Section spacing: responsive 80–144px; mobile 80px. Cards use 24/32px padding.
 - Card radius 16px, media radius 8px, action radius 2px. Pills reserved for
-  navigation shell, badges, and tags, never primary CTAs.
+  navigation shell, badges, tags, and secondary demo links, never primary CTAs.
 - Preserve overview grid 1.65:1:1 on desktop, two columns on tablet, one on mobile.
 - Section headings: prominent section name (Experience, Projects, Skills, About me,
   Contact), small solid accent marker, no repetitive slogan underneath. No tiny
@@ -106,7 +110,8 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
   Qasam leads software; the self-parking car leads hardware. Robotics belongs in
   hardware. Card preview images, titles, and text open `/projects/[slug]` with Problem, Solution, My role,
   and Outcome. Keep homepage cards concise; galleries, detailed results, credits,
-  and external links belong on case-study pages. Use real report drawings with
+  and external links belong on case-study pages, with a demo-pill shortcut allowed
+  on project cards. Use real report drawings with
   contain sizing and captions. `ZoomImage` opens detail-page project images and the About
   portrait in an in-page native dialog, never a separate tab. Keep image buttons
   separate from project links. Support Escape, backdrop click, Close, trapped focus,
