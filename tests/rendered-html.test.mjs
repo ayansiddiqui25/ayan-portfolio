@@ -2,6 +2,23 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { CONTACT, DURATION, penaltyAt, scrollPenaltyTime, isPenaltyNavHidden } from "../app/components/penalty-motion.mjs";
 import test from "node:test";
+import { readProjectReturn, projectReturnY } from '../app/components/project-return.mjs';
+
+test('project return restores the saved viewport offset and survives layout changes', () => {
+  const saved = { anchor: 'project-self-parking-car', y: 5200, offset: 180 };
+  const storage = { getItem: () => JSON.stringify(saved) };
+  assert.deepEqual(readProjectReturn(storage), saved);
+  assert.equal(projectReturnY(saved, 5380), 5200);
+  assert.equal(projectReturnY(saved, 5580), 5400);
+  assert.equal(projectReturnY(saved, undefined), 5200);
+  assert.equal(readProjectReturn({ getItem: () => null }), null);
+  assert.equal(readProjectReturn({ getItem: () => 'invalid' }), null);
+  assert.equal(readProjectReturn({ getItem: () => JSON.stringify({ ...saved, anchor: '//external' }) }), null);
+  assert.equal(readProjectReturn({ getItem: () => { throw Error('blocked'); } }), null);
+  const backLink = readFileSync(new URL('../app/components/ProjectBackLink.tsx', import.meta.url), 'utf8');
+  assert.doesNotMatch(backLink, /history\.back|document\.referrer/);
+  assert.match(backLink, /projectReturn=1/);
+});
 
 const routes = [
   ["/about", "#about"],

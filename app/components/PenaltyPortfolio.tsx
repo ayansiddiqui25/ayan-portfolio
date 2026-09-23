@@ -3,6 +3,7 @@ import { PortfolioNav } from "./PortfolioNav";
 import { ActionLink } from "./ActionLink";
 import { portfolio, visibleProjects, certifications } from "../portfolio-content";
 import { ZoomImage } from "./ZoomImage";
+import { ProjectPosition } from "./ProjectPosition";
 
 function ImagePlaceholder({ label, portrait = false }: { label: string; portrait?: boolean }) {
   return <div className={`image-placeholder ${portrait ? "image-placeholder--portrait" : ""}`} role="img" aria-label={label}>
@@ -19,6 +20,7 @@ export function PenaltyPortfolio() {
   const projects = visibleProjects;
   return (
     <main className="scroll-portfolio">
+      <ProjectPosition />
       <PortfolioNav />
       <section className="penalty-story" id="overview" aria-label="Scroll-controlled penalty kick">
         <div className="field-hero">

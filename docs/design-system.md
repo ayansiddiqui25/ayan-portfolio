@@ -124,8 +124,11 @@ secondary: `<ActionLink href="#about" variant="secondary">About me</ActionLink>`
 - Breakpoints: 1000px tablet/stacked hero, 650px single-column content/mobile nav.
 - Reuse pitch-line dividers, shirt numbers, and frame details sparingly.
 - Keep root scroll behavior instant so browser Back restores the previous position
-  without animating from the hero. `ProjectBackLink` uses native Back for direct
-  homepage arrivals and a project-anchor fallback for direct/shared detail URLs.
+  without animating from the hero. `ProjectPosition` records the clicked project's
+  viewport offset in tab-local session storage. `ProjectBackLink` returns explicitly
+  to the saved anchor and restores that offset without relying on referrer/history.
+  Direct/shared detail URLs fall back to the project card. Preserve return state
+  while navigating between related projects and stop late font correction on user input.
 
 ## Assets
 
