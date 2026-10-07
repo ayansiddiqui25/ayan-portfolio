@@ -26,6 +26,12 @@ export const projectDetails: Record<string, CaseStudy> = {
     role: "I built and trained the model, prepared the dataset workflow, and evaluated segmentation performance.",
     outcome: "Achieved 37.52% mean IoU and a validation loss of 0.4117. The repository contains the implementation."
   },
+  "courtcut-ai": {
+    problem: "AI-generated decisions can be difficult to inspect when users only see the final output. This prototype explores how to make an agent-based decision workflow more transparent and keep human review central to the experience.",
+    solution: "A Python and Streamlit workflow exposes tool calls and step-by-step decision timelines. An ethics scorecard and structured bias-review checks help users inspect the system’s outputs rather than treat them as automatically correct.",
+    role: "I built the agent-based workflow, added the ethics scorecard and bias-review checks, and designed the experience around transparency and human review. During the Kaggle Agents Hackathon, I tested agent behaviour, refined outputs, and improved the overall flow through rapid iteration.",
+    outcome: "Built a hackathon decision support prototype with visible agent activity and review checkpoints. The scorecard and bias checks support human inspection; they do not establish that the outputs are correct or free from bias."
+  },
   "autonomous-robot": {
     problem: "Autonomous navigation depends on sensing, obstacle avoidance, and motion control working together. Tightly coupled components can make faults difficult to isolate.",
     solution: "A modular architecture separates sensing, navigation, and control, supported by iterative testing and fault diagnosis.",

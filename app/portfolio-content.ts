@@ -199,6 +199,25 @@ export const portfolio = {
       "category": "software"
     },
     {
+      "id": "courtcut-ai",
+      "name": "CourtCut AI",
+      "type": "AI / Hackathon Prototype",
+      "image": "CourtCut AI prototype overview",
+      "gallery": [{ "src": "/project-assets/courtcut-ai/preview.jpg", "alt": "CourtCut interface showing a fictional debate workflow with Choose a case, Run the court, and Cut content stages", "caption": "CourtCut AI prototype overview", "width": 1912, "height": 939 }],
+      "description": "An AI-powered decision support prototype built during the Kaggle Agents Hackathon, focused on transparent agent workflows and human review.",
+      "points": [
+        "Built an agent-based workflow in Python and Streamlit with visible tool calls and step-by-step decision timelines.",
+        "Added an ethics scorecard and structured bias-review checks to make the system’s reasoning easier to inspect.",
+        "Designed the experience around transparency and human review instead of treating AI output as automatically correct.",
+        "Tested agent behaviour, refined outputs, and improved the overall flow through rapid hackathon iteration."
+      ],
+      "tech": ["Python", "Streamlit", "AI Agents", "Prompt Engineering", "Agent Workflows", "Ethics Review", "Bias Analysis", "Human-in-the-Loop Design", "Rapid Prototyping"],
+      "result": "Hackathon prototype with inspectable agent workflows",
+      "link": "https://github.com/ayansiddiqui25/courtcut-ai",
+      "linkLabel": "View code",
+      "category": "software"
+    },
+    {
       "id": "unet",
       "name": "U-Net Semantic Segmentation",
       "type": "Computer Vision / Deep Learning",

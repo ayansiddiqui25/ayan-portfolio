@@ -105,7 +105,7 @@ test("separates software and hardware projects and shows the team-led car galler
   assert.ok(softwareStart > 0 && hardwareStart > softwareStart);
   const software = html.slice(softwareStart, hardwareStart);
   const hardware = html.slice(hardwareStart, html.indexOf('id="skills"'));
-  for (const id of ["qasam", "sentinel-ai", "unet"]) assert.ok(software.includes(`id="project-${id}"`));
+  for (const id of ["qasam", "sentinel-ai", "courtcut-ai", "unet"]) assert.ok(software.includes(`id="project-${id}"`));
   for (const id of ["self-parking-car", "autonomous-robot", "water-filtration", "formula-racing", "battery-enclosure"]) {
     assert.ok(hardware.includes(`id="project-${id}"`));
     assert.ok(!software.includes(`id="project-${id}"`));
@@ -202,6 +202,18 @@ test("SentinelAI demo pill links to the supplied video on its card and case stud
   for (const html of [card, await (await render('/projects/sentinel-ai')).text()]) {
     assert.match(html, /<a[^>]*href="https:\/\/youtu\.be\/CWl1aig73W8"[^>]*class="action action--secondary action--compact action--pill"[^>]*><span>Watch demo<\/span>/);
   }
+});
+
+test("CourtCut AI includes supplied image, case study, tools and repository", async () => {
+  const response = await render('/projects/courtcut-ai');
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  for (const heading of ['Problem', 'Solution', 'My role', 'Outcome']) assert.ok(html.includes(`<h2>${heading}</h2>`));
+  assert.match(html, /project-assets\/courtcut-ai\/preview.jpg/);
+  assert.match(html, /href="https:\/\/github.com\/ayansiddiqui25\/courtcut-ai"/);
+  assert.match(html, /Kaggle Agents Hackathon/);
+  assert.match(html, /Streamlit/);
+  assert.match(html, /image-zoom-trigger/);
 });
 
 test("pictures use in-page dialog buttons instead of image links", async () => {
