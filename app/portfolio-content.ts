@@ -16,6 +16,34 @@ export const portfolio = {
   },
   "experiences": [
     {
+      "company": "DeckGrowth",
+      "role": "Founder & Automation Developer",
+      "dates": "Aug 2026 – Present",
+      "location": "Ontario",
+      "description": "Founded and operate a customer acquisition and automation agency for residential deck builders.",
+      "points": [
+        "Build automated CRM workflows for lead qualification, follow-up, appointment scheduling, confirmations, reminders, missed calls, and client onboarding.",
+        "Develop websites and sales funnels using Lovable, Cloudflare, and GoHighLevel, connecting forms, calendars, CRM pipelines, SMS, email, and payment workflows.",
+        "Manage Meta advertising campaigns and qualify homeowner leads based on location, project type, timeline, budget, and service-area fit.",
+        "Build outbound contractor prospecting systems using lead sourcing, cold SMS, follow-up sequences, qualification, and sales calls.",
+        "Monitor pipeline, appointment, conversion, and campaign data to identify bottlenecks and improve workflows."
+      ],
+      "skills": [
+        "GoHighLevel",
+        "Meta Ads",
+        "CRM Automation",
+        "Lovable",
+        "Cloudflare",
+        "LeadConnector / Twilio",
+        "Stripe",
+        "SMS & Email Automation",
+        "Lead Qualification",
+        "Sales Funnels",
+        "Workflow Automation",
+        "Entrepreneurship"
+      ]
+    },
+    {
       "company": "RecAbility",
       "role": "Engineering Design Intern",
       "dates": "Feb 2026 – Sep 2026",
