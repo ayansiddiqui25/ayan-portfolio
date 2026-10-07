@@ -27,7 +27,7 @@ export default async function ProjectPage({ params }: Props) {
   const story = projectDetails[slug];
   if (!project || !story) notFound();
   const peers = visibleProjects.filter(item => item.category === project.category && item.id !== slug);
-  return <main className="case-study page-width">
+  return <main className="case-study page-width" data-project={slug}>
     <nav className="case-nav" aria-label="Project navigation"><a href="/">Ayan Siddiqui</a><ProjectBackLink slug={slug}>← All projects</ProjectBackLink></nav>
     <header className="case-header"><p className="eyebrow">{project.type}</p><h1>{project.name}</h1><p>{project.description}</p>
       <ul className="tags">{project.tech.map(item => <li key={item}>{item}</li>)}</ul>

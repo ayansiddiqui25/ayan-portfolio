@@ -354,6 +354,7 @@ export const portfolio = {
       "linkLabel": "",
       "category": "hardware",
       "gallery": [
+        { "src": "/project-assets/water-filtration/cad-cover.jpg", "alt": "Water filtration unit CAD model with a blue collection funnel above a cylindrical tank", "caption": "Water filtration unit CAD model", "width": 536, "height": 612 },
         { "src": "/project-assets/water-filtration/system-diagram.png", "alt": "WFU system diagram connecting water capture, filtration, storage, outflow, maintenance, and user feedback", "caption": "System architecture", "width": 981, "height": 651 },
         { "src": "/project-assets/water-filtration/ayan-concept.jpeg", "alt": "Ayan's Design 4 sketch showing a raised rainwater tank, overflow indicator, filtration layers, and accessible valve", "caption": "My concept — Design 4, Milestone 2 report", "width": 1912, "height": 859 }
       ]

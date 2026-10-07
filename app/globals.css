@@ -366,8 +366,8 @@ body { font-size: 17px; line-height: 1.65; }
 .project-summary__image { height: 270px; padding: 16px; background: #fff; }
 .project-summary__image { display: block; }
 .project-summary__image > img { width: 100%; height: 100%; object-fit: contain; image-rendering: auto; }
-.qasam-featured-image { display: grid; place-items: center; padding: 32px; margin-top: 24px; background: var(--night); border-radius: var(--radius-media); }
-.qasam-featured-image img { width: min(100%, 280px); height: auto; object-fit: contain; }
+.qasam-featured-image { margin-top: 24px; background: var(--night); border-radius: var(--radius-media); overflow: hidden; }
+.qasam-featured-image img { display: block; width: 100%; height: auto; }
 #project-qasam .project-summary__image { background: var(--night); }
 .project-summary__body { padding: clamp(24px, 3vw, 32px); display: flex; flex: 1; flex-direction: column; }
 .project-summary h4 { font: 600 clamp(24px, 2.3vw, 32px)/1.3 var(--font-display); margin: 0 0 16px; overflow-wrap: anywhere; }
@@ -412,6 +412,11 @@ body { font-size: 17px; line-height: 1.65; }
 
 .image-zoom-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; cursor: zoom-in; }
 .image-zoom-trigger > img { display: block; }
+/* Software covers use the original image edge-to-edge, without a white mat. */
+#software-projects .project-summary:not(#project-unet) .project-summary__image { height: auto; padding: 0; background: var(--night); }
+#software-projects .project-summary:not(#project-unet) .project-summary__image > img { display: block; width: 100%; height: auto; }
+.case-study:is([data-project="qasam"], [data-project="sentinel-ai"], [data-project="courtcut-ai"]) .project-gallery .image-zoom-trigger { padding: 0; background: var(--night); }
+.case-study:is([data-project="qasam"], [data-project="sentinel-ai"], [data-project="courtcut-ai"]) .project-gallery .image-zoom-trigger > img { height: auto; max-height: none; }
 .image-zoom-trigger:focus-visible, .project-summary__body:focus-visible { outline: 3px solid var(--focus); outline-offset: -4px; }
 .project-summary__body:hover { text-decoration: none; }
 .image-lightbox { width: min(1400px, 94vw); max-width: 94vw; max-height: 94dvh; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--night); color: var(--paper); overflow: auto; }

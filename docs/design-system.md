@@ -147,6 +147,11 @@ ratios intact. No arbitrary scaling of a single scene actor independently.
 - Keeper: ready, launch, airborne, stretch, landed sequence.
 - Ball: existing transparent ball asset, synced to measured boot contact.
 - Project placeholders: bordered frame, index and explicit image label; 1.6:1.
+- Software cover images use their natural aspect ratio, full width, without
+  added padding or white framing. Apply this to Qasam, SentinelAI, and CourtCut AI
+  cards and galleries; retain U-Net's existing contained presentation. WFU uses
+  the supplied CAD model as its first gallery image and card cover, followed by
+  the system diagram and concept sketch.
 - Portrait: `ayan-retro-portrait.png`, generated from Ayan's supplied photograph,
   blue number 10 football kit. Reuse in About and crop via CSS for navigation avatar.
 - Social preview: preserve existing `public/og.png` unless explicitly changed.

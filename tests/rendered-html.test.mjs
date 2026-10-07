@@ -163,7 +163,10 @@ test("WFU has source images, careful attribution, and record-specific social met
     assert.ok(html.includes(`name="twitter:title" content="${title}"`));
     assert.doesNotMatch(html, /\/og\.png/);
   }
-  assert.match(wfu, /https:\/\/pixel-portfolio-fc\.sidayan25\.chatgpt\.site\/project-assets\/water-filtration\/system-diagram\.png/);
+  assert.match(wfu, /https:\/\/pixel-portfolio-fc\.sidayan25\.chatgpt\.site\/project-assets\/water-filtration\/cad-cover\.jpg/);
+  const home = await (await render()).text();
+  const start = home.indexOf('id="project-water-filtration"');
+  assert.match(home.slice(start, home.indexOf('</article>', start)), /cad-cover\.jpg/);
 });
 
 test("temporarily removed projects are absent from cards, related links and direct routes", async () => {
