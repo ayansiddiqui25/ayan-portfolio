@@ -42,7 +42,7 @@ export function PenaltyPortfolio() {
           <p className="eyebrow">Featured project</p><h2>Qasam</h2>
           <p>An accountability and app-blocking product designed to help Muslims build consistency around the five daily prayers.</p>
           <span className="text-link">Explore the project <span aria-hidden="true">↗</span></span>
-          <ImagePlaceholder label="Qasam / App screenshots to come" />
+          <div className="qasam-featured-image"><img src="/project-assets/qasam/logo.webp" alt="Qasam app icon" width={400} height={400} loading="lazy" /></div>
         </a>
         <a className="overview-card overview-card--building" href="/projects/self-parking-car">
           <p className="eyebrow">Mechanical design</p><h2>Self-Parking Car</h2>

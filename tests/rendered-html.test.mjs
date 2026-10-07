@@ -81,7 +81,7 @@ test("renders the portfolio with the generated stadium and named penalty player"
   assert.match(html, /<h2>About me<\/h2>/);
   assert.match(html, /hero-copy__role/);
   assert.doesNotMatch(html, /Portrait \/ Photo to come|05 \/ About/);
-  assert.match(html, /App screenshots to come/);
+  assert.match(html, /project-assets\/qasam\/logo.webp/);
   for (const name of ["RecAbility", "Rusteze Auto Detailing", "SheHacksPurple", "KKC Consulting", "SentinelAI", "U-Net Semantic Segmentation", "Autonomous Mobile Robot", "Self-Parking Car", "Water Filtration Unit"]) assert.ok(html.includes(name), name);
   assert.match(html, /Toronto Metropolitan University/);
   assert.match(html, /April 2028/);

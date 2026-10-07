@@ -102,7 +102,8 @@ export const portfolio = {
       "id": "qasam",
       "name": "Qasam",
       "type": "Mobile / Web Product",
-      "image": "App screenshots to come",
+      "image": "Qasam app icon",
+      "gallery": [{ "src": "/project-assets/qasam/logo.webp", "alt": "Qasam app icon with a gold arch on a dark background", "caption": "Qasam app icon", "width": 400, "height": 400 }],
       "description": "A Muslim prayer habit and accountability app designed to reduce phone distractions and build consistency around the five daily prayers.",
       "points": [
         "Designed and developed the product from concept to launch, including the user experience and product flows.",
@@ -172,7 +173,8 @@ export const portfolio = {
       "id": "unet",
       "name": "U-Net Semantic Segmentation",
       "type": "Computer Vision / Deep Learning",
-      "image": "Segmentation results to come",
+      "image": "U-Net segmentation result",
+      "gallery": [{ "src": "/project-assets/unet/segmentation.png", "alt": "Original urban street image beside the U-Net predicted segmentation mask", "caption": "Original image and predicted segmentation mask", "width": 1400, "height": 500 }],
       "description": "Built and trained a U-Net semantic segmentation model using the Cityscapes dataset.",
       "points": [
         "Used 2,975 training images and 500 validation images across 34 semantic classes.",
