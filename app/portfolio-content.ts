@@ -148,7 +148,8 @@ export const portfolio = {
       "id": "sentinel-ai",
       "name": "SentinelAI — Incident Response Platform",
       "type": "AI / Software",
-      "image": "Platform screenshot to come",
+      "image": "SentinelAI platform preview",
+      "gallery": [{ "src": "/project-assets/sentinel-ai/preview.jpg", "alt": "SentinelAI landing page with autonomous incident response features and a live incident response panel", "caption": "SentinelAI platform overview", "width": 1357, "height": 595 }],
       "description": "An AI-assisted incident-response platform that automates investigation of software outages and generates structured summaries of severity, timelines, root causes, and remediation.",
       "points": [
         "Built REST API workflows and integrated the OpenAI API.",
